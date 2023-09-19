@@ -48,5 +48,16 @@ public class App {
 
     // Print John Doe's credits
     System.out.println(johnDoe.getCredits());
+
+    // Add an item to John Doe's account
+    johnDoe.addItem("Tool", "Hammer", "A hammer", 17);
+
+    // Print the item's name, cost per day, and owner's name
+    System.out.println(johnDoe.getOwnedItems().get(0).getName());
+    System.out.println(johnDoe.getOwnedItems().get(0).getCostPerDay());
+    System.out.println(johnDoe.getOwnedItems().get(0).getOwner().getName());
+
+    // Print John Doe's credits
+    System.out.println(johnDoe.getCredits());
   }
 }

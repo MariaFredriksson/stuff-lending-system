@@ -63,4 +63,15 @@ public class Member {
   public void changeCredits(int credits) {
     this.credits += credits;
   }
+
+  public void addItem(String category, String name, String description, int costPerDay) {
+    // Create a new item object
+    Item newItem = new Item(category, name, description, costPerDay, this);
+
+    // Add the item to the list of items
+    this.ownedItems.add(newItem);
+
+    // Add 100 credits to the member's account
+    this.changeCredits(100);
+  }
 }
