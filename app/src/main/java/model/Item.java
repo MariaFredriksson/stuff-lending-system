@@ -56,7 +56,8 @@ public class Item {
   }
 
   public ArrayList<Contract> getContractList() {
-    return this.contractList;
+    // Return a copy of the list of contracts
+    return new ArrayList<Contract>(this.contractList);
   }
 
   public Date getCreationDate() {

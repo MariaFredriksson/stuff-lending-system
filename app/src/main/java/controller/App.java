@@ -1,5 +1,7 @@
 package controller;
 
+import java.util.Date;
+
 import model.Member;
 
 /**
@@ -83,5 +85,24 @@ public class App {
     for (int i = 0; i < johnDoe.getOwnedItems().size(); i++) {
       System.out.println(johnDoe.getOwnedItems().get(i).getName());
     }
+
+    // Print the date John Doe was created
+    System.out.println(johnDoe.getCreationDate());
+
+    // Pause the program for 5 seconds
+    try {
+      Thread.sleep(5000);
+    } catch (InterruptedException e) {
+      e.printStackTrace();
+    }
+
+    // Change the date John Doe was created to tomorrow
+    Date johnDoeCreationDate = johnDoe.getCreationDate();
+    johnDoeCreationDate = new Date();
+
+    // Print the date John Doe was created
+    System.out.println(johnDoeCreationDate);
+
+    // TODO: Change the methods that returns Dates to return copies of the Dates instead of the Dates themselves
   }
 }
