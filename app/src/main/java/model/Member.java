@@ -49,7 +49,8 @@ public class Member {
   }
 
   public ArrayList<Item> getOwnedItems() {
-    return this.ownedItems;
+    // Return a copy of the list of items
+    return new ArrayList<Item>(this.ownedItems);
   }
 
   public Date getCreationDate() {
@@ -73,5 +74,10 @@ public class Member {
 
     // Add 100 credits to the member's account
     this.changeCredits(100);
+  }
+
+  public void deleteItem(Item item) {
+    // Delete the item from the list of items
+    this.ownedItems.remove(item);
   }
 }

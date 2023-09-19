@@ -23,41 +23,65 @@ public class App {
     Member johnDoe = new Member("John Doe", "john.doe@example", 12345678, "12345678");
 
     // Print the member's name
-    System.out.println(johnDoe.getName());
+    // System.out.println(johnDoe.getName());
 
-    // Print the date the member was created
-    System.out.println(johnDoe.getCreationDate());
+    // // Print the date the member was created
+    // System.out.println(johnDoe.getCreationDate());
 
-    // Create another member
-    Member janeDoe = new Member("Jane Doe", "jane.doe@example", 87654321, "87654321");
+    // // Create another member
+    // Member janeDoe = new Member("Jane Doe", "jane.doe@example", 87654321, "87654321");
 
-    // Print the member's name
-    System.out.println(janeDoe.getName());
+    // // Print the member's name
+    // System.out.println(janeDoe.getName());
 
-    // Print the date the member was created
-    System.out.println(janeDoe.getCreationDate());
+    // // Print the date the member was created
+    // System.out.println(janeDoe.getCreationDate());
 
-    // Add 10 credits to John Doe's account
-    johnDoe.changeCredits(10);
+    // // Add 10 credits to John Doe's account
+    // johnDoe.changeCredits(10);
 
-    // Print John Doe's credits
-    System.out.println(johnDoe.getCredits());
+    // // Print John Doe's credits
+    // System.out.println(johnDoe.getCredits());
 
-    // Deduct 5 credits from John Doe's account
-    johnDoe.changeCredits(-5);
+    // // Deduct 5 credits from John Doe's account
+    // johnDoe.changeCredits(-5);
 
-    // Print John Doe's credits
-    System.out.println(johnDoe.getCredits());
+    // // Print John Doe's credits
+    // System.out.println(johnDoe.getCredits());
 
     // Add an item to John Doe's account
     johnDoe.addItem("Tool", "Hammer", "A hammer", 17);
 
     // Print the item's name, cost per day, and owner's name
-    System.out.println(johnDoe.getOwnedItems().get(0).getName());
-    System.out.println(johnDoe.getOwnedItems().get(0).getCostPerDay());
-    System.out.println(johnDoe.getOwnedItems().get(0).getOwner().getName());
+    // System.out.println(johnDoe.getOwnedItems().get(0).getName());
+    // System.out.println(johnDoe.getOwnedItems().get(0).getCostPerDay());
+    // System.out.println(johnDoe.getOwnedItems().get(0).getOwner().getName());
 
-    // Print John Doe's credits
-    System.out.println(johnDoe.getCredits());
+    // // Print John Doe's credits
+    // System.out.println(johnDoe.getCredits());
+
+    // Add another item to John Doe's account
+    johnDoe.addItem("Tool", "Screwdriver", "A screwdriver", 12);
+
+    // Print the name of all items owned by John Doe
+    for (int i = 0; i < johnDoe.getOwnedItems().size(); i++) {
+      System.out.println(johnDoe.getOwnedItems().get(i).getName());
+    }
+
+    // Try to delete the first item from John Doe's account - in the wrong way
+    johnDoe.getOwnedItems().remove(0);
+
+    // Print the name of all items owned by John Doe
+    for (int i = 0; i < johnDoe.getOwnedItems().size(); i++) {
+      System.out.println(johnDoe.getOwnedItems().get(i).getName());
+    }
+
+    // Delete the first item from John Doe's account - in the right way
+    johnDoe.deleteItem(johnDoe.getOwnedItems().get(0));
+
+    // Print the name of all items owned by John Doe
+    for (int i = 0; i < johnDoe.getOwnedItems().size(); i++) {
+      System.out.println(johnDoe.getOwnedItems().get(i).getName());
+    }
   }
 }
