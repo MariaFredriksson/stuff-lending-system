@@ -36,5 +36,17 @@ public class App {
 
     // Print the date the member was created
     System.out.println(janeDoe.getCreationDate());
+
+    // Add 10 credits to John Doe's account
+    johnDoe.changeCredits(10);
+
+    // Print John Doe's credits
+    System.out.println(johnDoe.getCredits());
+
+    // Deduct 5 credits from John Doe's account
+    johnDoe.changeCredits(-5);
+
+    // Print John Doe's credits
+    System.out.println(johnDoe.getCredits());
   }
 }

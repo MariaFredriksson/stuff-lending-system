@@ -59,4 +59,8 @@ public class Member {
   public void setName(String name) {
     this.name = name;
   }
+
+  public void changeCredits(int credits) {
+    this.credits += credits;
+  }
 }
