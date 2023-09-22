@@ -61,7 +61,8 @@ public class Item {
   }
 
   public Date getCreationDate() {
-    return this.creationDate;
+    // Return a defensive copy of the creationDate, so it is immutable
+    return new Date(this.creationDate.getTime());
   }
 
   public void setCategory(String category) {
