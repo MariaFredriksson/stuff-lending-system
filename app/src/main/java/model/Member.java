@@ -12,12 +12,13 @@ public class Member {
   private String memberID;
   private int credits;
   private ArrayList<Item> ownedItems;
+  // private ArrayList<Item> borrowedItems;
   private Date creationDate;
 
   public Member(String name, String email, int mobileNumber, String memberID) {
     this.name = name;
-    this.email = email;
-    this.mobileNumber = mobileNumber;
+    setEmail(email);
+    setMobileNumber(mobileNumber);
     this.memberID = memberID;
 
     // Set the credits to 0 for a new member
@@ -25,6 +26,10 @@ public class Member {
 
     // Create an empty list of items
     this.ownedItems = new ArrayList<Item>();
+
+    // ^^ Do we need this...?
+    // Create an empty list of borrowed items
+    // this.borrowedItems = new ArrayList<Item>();
 
     // Set the creation date to the current date
     this.creationDate = new Date();
@@ -65,6 +70,14 @@ public class Member {
   }
 
   // TODO: Add setters for email and mobileNumber with validation
+
+  public void setEmail(String email) {
+    
+  }
+
+  public void setMobileNumber(int mobileNumber) {
+    
+  }
 
   public void changeCredits(int credits) {
     this.credits += credits;

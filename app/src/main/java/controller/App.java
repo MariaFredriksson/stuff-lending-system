@@ -127,13 +127,15 @@ public class App {
       // Print the end date of the contract
       System.out.println(johnDoe.getOwnedItems().get(0).getContractList().get(0).getEndDate());
 
-      // Print the category of the item Jane rented
+      // Print the category of the item 
       System.out.println(johnDoe.getOwnedItems().get(0).getCategory());
 
-      // TODO: Make chategories to enum
       // TODO: Fix a generation of a uniqe alphanumeric memberID
+
       // TODO: Add method setEmail() to Member class with validation
       // TODO: Add method setMobileNumber() to Member class with validation
+
+      // ! Hur ska få Member att prata med Admin eller App? Hur får vi ut en lista med alla medlemmar som är nåbar i setEmail mm metoden i en Member? Så att vi kan kolla så att email och mobilnummer inte redan finns i systemet.
     } catch (Exception e) {
       System.out.println(e.getMessage());
     }
