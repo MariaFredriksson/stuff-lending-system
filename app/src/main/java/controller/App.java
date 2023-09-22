@@ -113,14 +113,20 @@ public class App {
       // Give Jane Doe 100 credits
       janeDoe.changeCredits(100);
 
-      // Jane Doe tries to rent John Doe's hammer for 2 days from now
+      // Jane Doe tries to rent John Doe's hammer for 2 days from now - i.e. in 3 days
       johnDoe.getOwnedItems().get(0).addContract(janeDoe, new Date(), new Date(new Date().getTime() + 2 * 24 * 60 * 60 * 1000));
 
       // Print Jane's and John's credits
       System.out.println(janeDoe.getCredits());
       System.out.println(johnDoe.getCredits());
+
+      // Print the name of the item Jane rented
+      System.out.println(johnDoe.getOwnedItems().get(0).getContractList().get(0).getItem().getName());
+
+      // Print the end date of the contract
+      System.out.println(johnDoe.getOwnedItems().get(0).getContractList().get(0).getEndDate());
     } catch (Exception e) {
-      // TODO: handle exception
+      System.out.println(e.getMessage());
     }
   }
 }

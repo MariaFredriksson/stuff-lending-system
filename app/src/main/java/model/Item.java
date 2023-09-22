@@ -102,6 +102,9 @@ public class Item {
     // Count the number of days between the start and end date
     int days = (int) ((endDate.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24));
 
+    // Add 1 to the number of days, because the start date is included
+    days++;
+
     // Check if the days are valid
     this.checkValidDays(days);
 
