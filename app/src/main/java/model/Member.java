@@ -3,6 +3,8 @@ package model;
 import java.util.ArrayList;
 import java.util.Date;
 
+import model.Item.ItemCategory;
+
 public class Member {
   private String name;
   private String email;
@@ -68,7 +70,7 @@ public class Member {
     this.credits += credits;
   }
 
-  public void addItem(String category, String name, String description, int costPerDay) {
+  public void addItem(ItemCategory category, String name, String description, int costPerDay) {
     // Create a new item object
     Item newItem = new Item(category, name, description, costPerDay, this);
 

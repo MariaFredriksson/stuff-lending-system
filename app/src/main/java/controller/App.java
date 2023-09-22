@@ -5,6 +5,7 @@ import java.util.Date;
 // import java.util.Date;
 
 import model.Member;
+import model.Item.ItemCategory;
 
 /**
  * Responsible for staring the application.
@@ -55,7 +56,7 @@ public class App {
       // System.out.println(johnDoe.getCredits());
 
       // Add an item to John Doe's account
-      johnDoe.addItem("Tool", "Hammer", "A hammer", 17);
+      johnDoe.addItem(ItemCategory.Tool, "Hammer", "A hammer", 17);
 
       // Print the item's name, cost per day, and owner's name
       // System.out.println(johnDoe.getOwnedItems().get(0).getName());
@@ -66,7 +67,7 @@ public class App {
       // System.out.println(johnDoe.getCredits());
 
       // Add another item to John Doe's account
-      johnDoe.addItem("Tool", "Screwdriver", "A screwdriver", 12);
+      johnDoe.addItem(ItemCategory.Tool, "Screwdriver", "A screwdriver", 12);
 
       // Print the name of all items owned by John Doe
       for (int i = 0; i < johnDoe.getOwnedItems().size(); i++) {
@@ -125,6 +126,14 @@ public class App {
 
       // Print the end date of the contract
       System.out.println(johnDoe.getOwnedItems().get(0).getContractList().get(0).getEndDate());
+
+      // Print the category of the item Jane rented
+      System.out.println(johnDoe.getOwnedItems().get(0).getCategory());
+
+      // TODO: Make chategories to enum
+      // TODO: Fix a generation of a uniqe alphanumeric memberID
+      // TODO: Add method setEmail() to Member class with validation
+      // TODO: Add method setMobileNumber() to Member class with validation
     } catch (Exception e) {
       System.out.println(e.getMessage());
     }

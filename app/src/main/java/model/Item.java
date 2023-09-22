@@ -4,7 +4,16 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class Item {
-  private String category;
+  public enum ItemCategory {
+    Tool,
+    Vehicle,
+    Game,
+    Toy,
+    Sport,
+    Other
+  }
+
+  private ItemCategory category;
   private String name;
   private String description;
   private int costPerDay;
@@ -13,7 +22,7 @@ public class Item {
   private ArrayList<Contract> contractList;
   private Date creationDate;
 
-  public Item(String category, String name, String description, int costPerDay, Member owner) {
+  public Item(ItemCategory category, String name, String description, int costPerDay, Member owner) {
     // ^^ Use the setters instead...?
     this.category = category;
     this.name = name;
@@ -31,7 +40,7 @@ public class Item {
     this.creationDate = new Date();
   }
 
-  public String getCategory() {
+  public ItemCategory getCategory() {
     return this.category;
   }
 
@@ -66,7 +75,7 @@ public class Item {
     return new Date(this.creationDate.getTime());
   }
 
-  public void setCategory(String category) {
+  public void setCategory(ItemCategory category) {
     this.category = category;
   }
 
