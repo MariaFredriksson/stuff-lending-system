@@ -49,7 +49,7 @@ public class Member {
   }
 
   public ArrayList<Item> getOwnedItems() {
-    // Return a copy of the list of items
+    // Return a copy of the list of items, so it is immutable
     return new ArrayList<Item>(this.ownedItems);
   }
 
@@ -61,6 +61,8 @@ public class Member {
   public void setName(String name) {
     this.name = name;
   }
+
+  // TODO: Add setters for email and mobileNumber with validation
 
   public void changeCredits(int credits) {
     this.credits += credits;
