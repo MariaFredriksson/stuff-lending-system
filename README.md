@@ -1,7 +1,10 @@
-# A2
+# A2 - The Stuff Lending System
 
-Project for Assignment 2
+// TODO:
+README.md that explains usage of your application and if there are any parts missing.
 
+
+--------------------------------------------------------
 A project template based on gradle and a gitlab pipeline. You should always build and run the application using gradle regularely.
 
 [design.md](design.md) contains the prescribed architectural design of the application.

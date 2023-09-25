@@ -1,4 +1,4 @@
-# Boatclub OO-Design
+# The Stuff Lending System OO-Design
 This document describes the design according to the requirements presented in assignment 2.
 
 ## Architectural Overview
@@ -12,3 +12,6 @@ Please provide at least one class diagram according to the assignment requirment
 
 ### Sequence Diagram
 Please provide at least one sequence diagram according to the assignment requirments.
+
+### Object Diagram
+Please provide at least one object diagram according to the assignment requirments.
