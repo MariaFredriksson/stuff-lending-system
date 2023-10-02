@@ -6,6 +6,7 @@ import java.util.Date;
 
 import model.Member;
 import model.Item.ItemCategory;
+import controller.AdminController;
 
 /**
  * Responsible for staring the application.
@@ -129,6 +130,13 @@ public class App {
 
       // Print the category of the item 
       System.out.println(johnDoe.getOwnedItems().get(0).getCategory());
+
+      // Add a new member to the members list
+      AdminController admin = new AdminController();
+      Member newMember = admin.createMember("John Doe", "john.doe@example", 12345678);
+      System.out.println(newMember.getName());
+
+
 
       // TODO: Fix a generation of a uniqe alphanumeric memberID
 

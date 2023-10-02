@@ -2,9 +2,9 @@ package model;
 
 import java.util.Random;
 
-public class Admin {
+public class AdminModel {
   
-  public Admin() { 
+  public AdminModel() { 
     
   }
 
