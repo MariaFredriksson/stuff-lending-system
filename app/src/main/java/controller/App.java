@@ -27,7 +27,7 @@ public class App {
       // c.doSomethingSimple(m, v);
 
       // Create a new Member object
-      Member johnDoe = new Member("John Doe", "john.doe@example", 12345678, "12345678");
+      // Member johnDoe = new Member("John Doe", "john.doe@example", 12345678, "12345678");
 
       // Print the member's name
       // System.out.println(johnDoe.getName());
@@ -36,7 +36,7 @@ public class App {
       // System.out.println(johnDoe.getCreationDate());
 
       // Create another member
-      Member janeDoe = new Member("Jane Doe", "jane.doe@example", 87654321, "87654321");
+      // Member janeDoe = new Member("Jane Doe", "jane.doe@example", 87654321, "87654321");
 
       // // Print the member's name
       // System.out.println(janeDoe.getName());
@@ -57,7 +57,7 @@ public class App {
       // System.out.println(johnDoe.getCredits());
 
       // Add an item to John Doe's account
-      johnDoe.addItem(ItemCategory.Tool, "Hammer", "A hammer", 17);
+      // johnDoe.addItem(ItemCategory.Tool, "Hammer", "A hammer", 17);
 
       // Print the item's name, cost per day, and owner's name
       // System.out.println(johnDoe.getOwnedItems().get(0).getName());
@@ -68,12 +68,12 @@ public class App {
       // System.out.println(johnDoe.getCredits());
 
       // Add another item to John Doe's account
-      johnDoe.addItem(ItemCategory.Tool, "Screwdriver", "A screwdriver", 12);
+      // johnDoe.addItem(ItemCategory.Tool, "Screwdriver", "A screwdriver", 12);
 
       // Print the name of all items owned by John Doe
-      for (int i = 0; i < johnDoe.getOwnedItems().size(); i++) {
-        System.out.println(johnDoe.getOwnedItems().get(i).getName());
-      }
+      // for (int i = 0; i < johnDoe.getOwnedItems().size(); i++) {
+      //   System.out.println(johnDoe.getOwnedItems().get(i).getName());
+      // }
 
       // // Try to delete the first item from John Doe's account - in the wrong way
       // johnDoe.getOwnedItems().remove(0);
@@ -113,34 +113,38 @@ public class App {
       // --------------------------------------------------------------------------------
 
       // Give Jane Doe 100 credits
-      janeDoe.changeCredits(100);
+      // janeDoe.changeCredits(100);
 
       // Jane Doe tries to rent John Doe's hammer for 2 days from now - i.e. in 3 days
-      johnDoe.getOwnedItems().get(0).addContract(janeDoe, new Date(), new Date(new Date().getTime() + 2 * 24 * 60 * 60 * 1000));
+      // johnDoe.getOwnedItems().get(0).addContract(janeDoe, new Date(), new Date(new Date().getTime() + 2 * 24 * 60 * 60 * 1000));
 
       // Print Jane's and John's credits
-      System.out.println(janeDoe.getCredits());
-      System.out.println(johnDoe.getCredits());
+      // System.out.println(janeDoe.getCredits());
+      // System.out.println(johnDoe.getCredits());
 
-      // Print the name of the item Jane rented
-      System.out.println(johnDoe.getOwnedItems().get(0).getContractList().get(0).getItem().getName());
+      // // Print the name of the item Jane rented
+      // System.out.println(johnDoe.getOwnedItems().get(0).getContractList().get(0).getItem().getName());
 
-      // Print the end date of the contract
-      System.out.println(johnDoe.getOwnedItems().get(0).getContractList().get(0).getEndDate());
+      // // Print the end date of the contract
+      // System.out.println(johnDoe.getOwnedItems().get(0).getContractList().get(0).getEndDate());
 
-      // Print the category of the item 
-      System.out.println(johnDoe.getOwnedItems().get(0).getCategory());
+      // // Print the category of the item 
+      // System.out.println(johnDoe.getOwnedItems().get(0).getCategory());
 
       // Add a new member to the members list
       AdminController admin = new AdminController();
-      Member newMember = admin.createMember("John Doe", "john.doe@example", 12345678);
+      Member newMember = admin.createMember("John Doe", "john.doe@example", 1234567891);
       System.out.println(newMember.getName());
 
       // Add a new member with the same email
-      Member newMember2 = admin.createMember("Jane Doe", "john.doe@example", 87654321);
-      System.out.println(newMember2.getEmail());
-      System.out.println(newMember);
-      System.out.println(admin.getMembers());
+      // Member newMember2 = admin.createMember("Jane Doe", "john.doe@example", 0765432131);
+      // System.out.println(newMember2.getEmail());
+      // System.out.println(newMember);
+      // System.out.println(admin.getMembers());
+
+      // Add a new member with the same mobile number
+      Member newMember3 = admin.createMember("Jane Doe", "jane.doe@example", 1234567891);
+      System.out.println(newMember3.getMobileNumber());
 
 
       // TODO: Fix a generation of a uniqe alphanumeric memberID

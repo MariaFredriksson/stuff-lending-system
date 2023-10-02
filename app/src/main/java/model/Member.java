@@ -80,8 +80,13 @@ public class Member {
 
   }
 
+  // TODO: Change the int to string?
   public void setMobileNumber(int mobileNumber) {
-    
+    if (String.valueOf(mobileNumber).length() == 10) {
+      this.mobileNumber = mobileNumber;
+    } else {
+      throw new IllegalArgumentException("Invalid mobile number");
+    }
   }
 
   public void changeCredits(int credits) {
