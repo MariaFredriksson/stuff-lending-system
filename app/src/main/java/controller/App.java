@@ -136,6 +136,11 @@ public class App {
       Member newMember = admin.createMember("John Doe", "john.doe@example", 12345678);
       System.out.println(newMember.getName());
 
+      // Add a new member with the same email
+      Member newMember2 = admin.createMember("Jane Doe", "john.doe@example", 87654321);
+      System.out.println(newMember2.getEmail());
+      System.out.println(newMember);
+      System.out.println(admin.getMembers());
 
 
       // TODO: Fix a generation of a uniqe alphanumeric memberID

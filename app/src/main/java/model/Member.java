@@ -72,7 +72,12 @@ public class Member {
   // TODO: Add setters for email and mobileNumber with validation
 
   public void setEmail(String email) {
-    
+    if (email.contains("@") && email.contains(".")) {
+      this.email = email;
+    } else {
+      throw new IllegalArgumentException("Invalid email");
+    }
+
   }
 
   public void setMobileNumber(int mobileNumber) {
