@@ -10,7 +10,7 @@ public class AdminModel {
 
   public Member createMember(String name, String email, int mobileNumber) {
 
-    String memberID = generateRandomString(10);
+    String memberID = generateMemberID(10);
 
     Member member = new Member(name, email, mobileNumber, memberID);
 
@@ -18,7 +18,7 @@ public class AdminModel {
 
   }
   
-  private String generateRandomString(int length) {
+  private String generateMemberID(int length) {
       String CHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
       Random random = new Random();
       StringBuilder stringBuilder = new StringBuilder(length);

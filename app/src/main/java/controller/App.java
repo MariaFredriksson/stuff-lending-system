@@ -143,11 +143,11 @@ public class App {
       // System.out.println(admin.getMembers());
 
       // Add a new member with the same mobile number
-      Member newMember3 = admin.createMember("Jane Doe", "jane.doe@example", 1234567891);
-      System.out.println(newMember3.getMobileNumber());
+      // Member newMember3 = admin.createMember("Jane Doe", "jane.doe@example", 1234567891);
+      // System.out.println(newMember3.getMobileNumber());
 
+      System.out.println(newMember.getMemberID());
 
-      // TODO: Fix a generation of a uniqe alphanumeric memberID
 
       // TODO: Add method setEmail() to Member class with validation
       // TODO: Add method setMobileNumber() to Member class with validation
