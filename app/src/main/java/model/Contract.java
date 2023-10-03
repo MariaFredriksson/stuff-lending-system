@@ -1,7 +1,5 @@
 package model;
 
-import java.util.Date;
-
 public class Contract {
   private Item item;
   private Member lender;

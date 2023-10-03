@@ -1,11 +1,11 @@
 package controller;
 
-import java.util.Date;
-
 // import java.util.Date;
 
 import model.Member;
 import model.Item.ItemCategory;
+import view.AdminView;
+import view.AdminView.MainMenuAction;
 import controller.AdminController;
 import model.Time;
 
@@ -136,19 +136,39 @@ public class App {
       // System.out.println(johnDoe.getOwnedItems().get(0).getCategory());
 
       // Add a new member to the members list
-      AdminController admin = new AdminController();
-      Member newMember = admin.createMember("John Doe", "john.doe@example", "1234567891", time.getTodaysDate());
+      AdminController adminController = new AdminController();
+      Member newMember = adminController.createMember("John Doe", "john.doe@example", "1234567891", time.getTodaysDate());
       System.out.println(newMember.getName());
       System.out.println(newMember.getCreationDate());
 
       // Edit the member
-      admin.editMember(newMember, "Jane Doe", "jane.doe@example", "0701234569");
+      adminController.editMember(newMember, "Jane Doe", "jane.doe@example", "0701234569");
       System.out.println(newMember.getName());
 
       // Delete the member
-      admin.deleteMember(newMember);
-      System.out.println(admin.getMembers());
+      adminController.deleteMember(newMember);
+      System.out.println(adminController.getMembers());
 
+      // Show the main menu
+      AdminView adminView = new AdminView();
+      adminView.mainMenu();
+      MainMenuAction result = adminView.getMainMenuAction(adminView.readLine());
+      System.out.println(result);
+
+      switch (result) {
+        case CREATE_MEMBER:
+          adminController.createMember("Lasse", "lasse.doe@mail.com", "1234567896", time.getTodaysDate());
+      }
+
+      // Loop through the list of members and print their names
+      for (int i = 0; i < adminController.getMembers().size(); i++) {
+        System.out.println(adminController.getMembers().get(i).getName());
+      }
+      System.out.println(adminController.getMembers());
+
+
+      // ^^ Vart tog John och Jane vägen?
+      
       // Add a new member with the same email
       // Member newMember2 = admin.createMember("Jane Doe", "john.doe@example", 0765432131);
       // System.out.println(newMember2.getEmail());
