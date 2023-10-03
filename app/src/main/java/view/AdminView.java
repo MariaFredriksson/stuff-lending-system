@@ -69,8 +69,33 @@ public class AdminView {
     return scanner.nextLine();
   }
 
-    public void editMemberMenu() {
-    System.out.println("Edit member");
-    System.out.println("Select a member to edit:");
+
+  public void print(String text) {
+    System.out.println(text);
+  }
+
+  public String prompt(String prompt) {
+    print(prompt);
+    return readLine();
+  }
+
+  public void editMemberMenu() {
+  System.out.println("Edit member");
+  System.out.println("Select a member to edit:");
+  }
+
+  public MainMenuAction editMemberMenuAction(String input) {
+    if (input.length() != 1) {
+      return MainMenuAction.NONE;
+    }
+    switch (input) {
+      case "1":
+        
+        break;
+    
+      default:
+        break;
+    }
+    return null;
   }
 }
