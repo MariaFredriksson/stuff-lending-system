@@ -6,6 +6,10 @@ import model.Member;
 import model.Item.ItemCategory;
 import view.AdminView;
 import view.AdminView.MainMenuAction;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import controller.AdminController;
 import model.Time;
 
@@ -149,6 +153,8 @@ public class App {
       // adminController.deleteMember(newMember);
       // System.out.println(adminController.getMembers());
 
+        adminController.createMember("Lasse", "lasse.doe@mail.com", "1234567896", time.getTodaysDate());
+      
       // Show the main menu
       AdminView adminView = new AdminView();
       MainMenuAction result = MainMenuAction.NONE;
@@ -168,14 +174,19 @@ public class App {
             String mobileNumber = adminView.readLine();
             adminController.createMember(name, email, mobileNumber, time.getTodaysDate());
             System.out.println("Member created!");
-
-            // adminController.createMember("Lasse", "lasse.doe@mail.com", "1234567896", time.getTodaysDate());
+            break;
+          case EDIT_MEMBER:
+            System.out.println("Edit member");
+            List <Member> memberList = adminController.getMembers();
+            for (int i = 0; i < memberList.size(); i++) {
+              System.out.println(i + 1 + ". " + memberList.get(i).getName());
+            }
         }
       }
       // Loop through the list of members and print their names
-      for (int i = 0; i < adminController.getMembers().size(); i++) {
-        System.out.println(adminController.getMembers().get(i).getName());
-      }
+      // for (int i = 0; i < adminController.getMembers().size(); i++) {
+      //   System.out.println(adminController.getMembers().get(i).getName());
+      // }
 
       // Add a new member with the same email
       // Member newMember2 = admin.createMember("Jane Doe", "john.doe@example", 0765432131);

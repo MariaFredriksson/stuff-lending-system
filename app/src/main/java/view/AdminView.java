@@ -68,4 +68,9 @@ public class AdminView {
     Scanner scanner = new Scanner(System.in);
     return scanner.nextLine();
   }
+
+    public void editMemberMenu() {
+    System.out.println("Edit member");
+    System.out.println("Select a member to edit:");
+  }
 }
