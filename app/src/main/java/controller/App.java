@@ -66,6 +66,14 @@ public class App {
             for (int i = 0; i < memberList.size(); i++) {
               adminView.print(i + 1 + ". " + memberList.get(i).getName());
             }
+            adminView.editMemberMenu();
+            int memberIndex = Integer.parseInt(adminView.readLine());
+            Member member = memberList.get(memberIndex - 1);
+            String newName = adminView.prompt("Enter name:");
+            String newEmail = adminView.prompt("Enter email:");
+            String newMobileNumber = adminView.prompt("Enter mobile number:");
+            adminController.editMember(member, newName, newEmail, newMobileNumber);
+
         }
       }
 
