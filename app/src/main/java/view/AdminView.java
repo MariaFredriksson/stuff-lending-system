@@ -5,18 +5,17 @@ import java.util.Scanner;
 public class AdminView {
   
   public void mainMenu () {
-    System.out.println("Welcome to the Stuff Lending System!");
-    System.out.println("Please select an option:");
-    System.out.println("1. Create a new member");
-    System.out.println("2. Edit a member");
-    System.out.println("3. Delete a member");
-    System.out.println("4. View all members");
-    System.out.println("5. Add item");
-    System.out.println("6. Edit item");
-    System.out.println("7. Delete item");
-    System.out.println("8. View all items");
-    System.out.println("9. View all contracts");
-    System.out.println("Q. Exit");
+    print("Please select an option:");
+    print("1. Create a new member");
+    print("2. Edit a member");
+    print("3. Delete a member");
+    print("4. View all members");
+    print("5. Add item");
+    print("6. Edit item");
+    print("7. Delete item");
+    print("8. View all items");
+    print("9. View all contracts");
+    print("Q. Exit");
   }
 
   public enum MainMenuAction {
@@ -79,11 +78,13 @@ public class AdminView {
     return readLine();
   }
 
+  // ^^ Is this needed?
   public void editMemberMenu() {
-  System.out.println("Edit member");
-  System.out.println("Select a member to edit:");
+  print("Edit member");
+  print("Select a member to edit:");
   }
 
+  // ^^ Is this needed?
   public MainMenuAction editMemberMenuAction(String input) {
     if (input.length() != 1) {
       return MainMenuAction.NONE;

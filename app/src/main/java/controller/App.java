@@ -43,9 +43,16 @@ public class App {
 
         adminController.createMember("Lasse", "lasse.doe@mail.com", "1234567896", time.getTodaysDate());
       
-      // Show the main menu
+      // Create an admin view
       AdminView adminView = new AdminView();
+
+      // Print a welcome message when the application first starts
+      adminView.print("Welcome to the Stuff Lending System!");
+
+      // Set the result to something other than EXIT so the while-loop starts
       MainMenuAction result = MainMenuAction.NONE;
+
+      // Show the main menu until the user exits
       while (result != MainMenuAction.EXIT) {
         adminView.mainMenu();
         result = adminView.getMainMenuAction(adminView.readLine());
@@ -53,6 +60,7 @@ public class App {
 
         switch (result) {
           case CREATE_MEMBER:
+            // ^^ Make this into its own method maybe? But where should it be placed?
             adminView.print("Create new member");
             String name = adminView.prompt("Enter name:");
             String email = adminView.prompt("Enter email:");
@@ -61,19 +69,24 @@ public class App {
             adminView.print("Member created!");
             break;
           case EDIT_MEMBER:
+            // ^^ Also its own method maybe?
             adminView.print("Edit member");
+            adminView.print("Select member to edit:");
             List <Member> memberList = adminController.getMembers();
             for (int i = 0; i < memberList.size(); i++) {
               adminView.print(i + 1 + ". " + memberList.get(i).getName());
             }
-            adminView.editMemberMenu();
+
+            // ^^ Is this needed?
+            // adminView.editMemberMenu();
+            
             int memberIndex = Integer.parseInt(adminView.readLine());
             Member member = memberList.get(memberIndex - 1);
             String newName = adminView.prompt("Enter name:");
             String newEmail = adminView.prompt("Enter email:");
             String newMobileNumber = adminView.prompt("Enter mobile number:");
             adminController.editMember(member, newName, newEmail, newMobileNumber);
-
+            break;
         }
       }
 
