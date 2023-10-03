@@ -22,11 +22,11 @@ public class AdminController {
     validateMobileNumber(mobileNumber);
     // Create a new member using the admin instance
     Member member = admin.createMember(name, email, mobileNumber);
-    addMember(member);
+    addMemberToList(member);
     return member;
   }
   
-  private void addMember(Member member) {
+  private void addMemberToList(Member member) {
     // Add the member to the list of members
     members.add(member);
   }
@@ -52,7 +52,19 @@ public class AdminController {
     });
   }
 
+  public void editMember(Member member, String name, String email, int mobileNumber) {
+    // Validate the email and mobile number
+    validateEmail(email);
+    validateMobileNumber(mobileNumber);
+    // Edit the member
+    member.setName(name);
+    member.setEmail(email);
+    member.setMobileNumber(mobileNumber);
+  }
 
-
+  public void deleteMember(Member member) {
+    // Delete the member
+    members.remove(member);
+  }
 }
 

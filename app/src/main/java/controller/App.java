@@ -136,6 +136,14 @@ public class App {
       Member newMember = admin.createMember("John Doe", "john.doe@example", 1234567891);
       System.out.println(newMember.getName());
 
+      // Edit the member
+      admin.editMember(newMember, "Jane Doe", "jane.doe@example", 1765432131);
+      System.out.println(newMember.getName());
+
+      // Delete the member
+      admin.deleteMember(newMember);
+      System.out.println(admin.getMembers());
+
       // Add a new member with the same email
       // Member newMember2 = admin.createMember("Jane Doe", "john.doe@example", 0765432131);
       // System.out.println(newMember2.getEmail());
@@ -146,7 +154,7 @@ public class App {
       // Member newMember3 = admin.createMember("Jane Doe", "jane.doe@example", 1234567891);
       // System.out.println(newMember3.getMobileNumber());
 
-      System.out.println(newMember.getMemberID());
+      // System.out.println(newMember.getMemberID());
 
       // ! Hur ska få Member att prata med Admin eller App? Hur får vi ut en lista med alla medlemmar som är nåbar i setEmail mm metoden i en Member? Så att vi kan kolla så att email och mobilnummer inte redan finns i systemet.
     } catch (Exception e) {
