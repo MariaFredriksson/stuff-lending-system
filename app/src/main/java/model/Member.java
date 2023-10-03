@@ -8,15 +8,15 @@ import model.Item.ItemCategory;
 public class Member {
   private String name;
   private String email;
-  private int mobileNumber;
+  private String mobileNumber;
   private String memberID;
   private int credits;
   private ArrayList<Item> ownedItems;
   // private ArrayList<Item> borrowedItems;
-  private Date creationDate;
+  private int creationDate;
 
-  public Member(String name, String email, int mobileNumber, String memberID) {
-    this.name = name;
+  public Member(String name, String email, String mobileNumber, String memberID, int creationDate) {
+    setName(name);
     setEmail(email);
     setMobileNumber(mobileNumber);
     this.memberID = memberID;
@@ -32,7 +32,7 @@ public class Member {
     // this.borrowedItems = new ArrayList<Item>();
 
     // Set the creation date to the current date
-    this.creationDate = new Date();
+    this.creationDate = creationDate;
   }
 
   public String getName() {
@@ -43,7 +43,7 @@ public class Member {
     return this.email;
   }
 
-  public int getMobileNumber() {
+  public String getMobileNumber() {
     return this.mobileNumber;
   }
 
@@ -60,16 +60,13 @@ public class Member {
     return new ArrayList<Item>(this.ownedItems);
   }
 
-  public Date getCreationDate() {
-    // Return a defensive copy of the creationDate, so it is immutable
-    return new Date(this.creationDate.getTime());
+  public int getCreationDate() {
+    return this.creationDate;
   }
 
   public void setName(String name) {
     this.name = name;
   }
-
-  // TODO: Add setters for email and mobileNumber with validation
 
   public void setEmail(String email) {
     if (email.contains("@") && email.contains(".")) {
@@ -80,8 +77,7 @@ public class Member {
 
   }
 
-  // TODO: Change the int to string?
-  public void setMobileNumber(int mobileNumber) {
+  public void setMobileNumber(String mobileNumber) {
     if (String.valueOf(mobileNumber).length() == 10) {
       this.mobileNumber = mobileNumber;
     } else {
@@ -95,7 +91,7 @@ public class Member {
 
   public void addItem(ItemCategory category, String name, String description, int costPerDay) {
     // Create a new item object
-    Item newItem = new Item(category, name, description, costPerDay, this);
+    Item newItem = new Item(category, name, description, costPerDay, this, this.creationDate);
 
     // Add the item to the list of items
     this.ownedItems.add(newItem);
@@ -108,4 +104,6 @@ public class Member {
     // Delete the item from the list of items
     this.ownedItems.remove(item);
   }
+
+  //^^ borrowedItems metod?
 }

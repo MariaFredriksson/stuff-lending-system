@@ -16,12 +16,12 @@ public class AdminController {
     admin = new AdminModel(); // Initialize the admin instance
   }
   
-  public Member createMember(String name, String email, int mobileNumber) {
+  public Member createMember(String name, String email, String mobileNumber, int creationDate) {
     // Validate the email and mobile number
     validateEmail(email);
     validateMobileNumber(mobileNumber);
     // Create a new member using the admin instance
-    Member member = admin.createMember(name, email, mobileNumber);
+    Member member = admin.createMember(name, email, mobileNumber, creationDate);
     addMemberToList(member);
     return member;
   }
@@ -44,7 +44,7 @@ public class AdminController {
     });
   }
 
-  private void validateMobileNumber(int mobileNumber) {
+  private void validateMobileNumber(String mobileNumber) {
     members.forEach(member -> {
       if (member.getMobileNumber() == mobileNumber) {
         throw new IllegalArgumentException("Mobile number already exists");
@@ -52,7 +52,7 @@ public class AdminController {
     });
   }
 
-  public void editMember(Member member, String name, String email, int mobileNumber) {
+  public void editMember(Member member, String name, String email, String mobileNumber) {
     // Validate the email and mobile number
     validateEmail(email);
     validateMobileNumber(mobileNumber);

@@ -6,11 +6,11 @@ public class Contract {
   private Item item;
   private Member lender;
   private Member borrower;
-  private Date startDate;
-  private Date endDate;
+  private int startDate;
+  private int endDate;
   private int rentingCost;
 
-  public Contract(Item item, Member lender, Member borrower, Date startDate, Date endDate, int rentingCost) {
+  public Contract(Item item, Member lender, Member borrower, int startDate, int endDate, int rentingCost) {
     this.item = item;
     this.lender = lender;
     this.borrower = borrower;
@@ -32,11 +32,11 @@ public class Contract {
     return this.borrower;
   }
 
-  public Date getStartDate() {
+  public int getStartDate() {
     return this.startDate;
   }
 
-  public Date getEndDate() {
+  public int getEndDate() {
     return this.endDate;
   }
 

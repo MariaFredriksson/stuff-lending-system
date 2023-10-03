@@ -8,11 +8,11 @@ public class AdminModel {
     
   }
 
-  public Member createMember(String name, String email, int mobileNumber) {
+  public Member createMember(String name, String email, String mobileNumber, int creationDate) {
 
     String memberID = generateMemberID(10);
 
-    Member member = new Member(name, email, mobileNumber, memberID);
+    Member member = new Member(name, email, mobileNumber, memberID, creationDate);
 
     return member;
 

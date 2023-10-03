@@ -7,6 +7,7 @@ import java.util.Date;
 import model.Member;
 import model.Item.ItemCategory;
 import controller.AdminController;
+import model.Time;
 
 /**
  * Responsible for staring the application.
@@ -19,6 +20,9 @@ public class App {
    */
   public static void main(String[] args) {
     try {
+
+      Time time = new Time();
+
       // adapt to start the application in your way
       // model.Simple m = new model.Simple();
       // Simple c = new Simple();
@@ -133,11 +137,12 @@ public class App {
 
       // Add a new member to the members list
       AdminController admin = new AdminController();
-      Member newMember = admin.createMember("John Doe", "john.doe@example", 1234567891);
+      Member newMember = admin.createMember("John Doe", "john.doe@example", "1234567891", time.getTodaysDate());
       System.out.println(newMember.getName());
+      System.out.println(newMember.getCreationDate());
 
       // Edit the member
-      admin.editMember(newMember, "Jane Doe", "jane.doe@example", 1765432131);
+      admin.editMember(newMember, "Jane Doe", "jane.doe@example", "0701234569");
       System.out.println(newMember.getName());
 
       // Delete the member

@@ -20,15 +20,15 @@ public class Item {
   private Member owner;
   private boolean isAvailable;
   private ArrayList<Contract> contractList;
-  private Date creationDate;
+  private int creationDate;
 
-  public Item(ItemCategory category, String name, String description, int costPerDay, Member owner) {
-    // ^^ Use the setters instead...?
-    this.category = category;
-    this.name = name;
-    this.description = description;
-    this.costPerDay = costPerDay;
+  public Item(ItemCategory category, String name, String description, int costPerDay, Member owner, int creationDate) {
+    setCategory(category);
+    setName(name);
+    setDescription(description);
+    setCostPerDay(costPerDay);
     this.owner = owner;
+    this.creationDate = creationDate;
 
     // Set the item to available for a new item
     this.isAvailable = true;
@@ -36,8 +36,6 @@ public class Item {
     // Create an empty list of contracts
     this.contractList = new ArrayList<Contract>();
 
-    // Set the creation date to the current date
-    this.creationDate = new Date();
   }
 
   public ItemCategory getCategory() {
@@ -70,9 +68,8 @@ public class Item {
     return new ArrayList<Contract>(this.contractList);
   }
 
-  public Date getCreationDate() {
-    // Return a defensive copy of the creationDate, so it is immutable
-    return new Date(this.creationDate.getTime());
+  public int getCreationDate() {
+    return this.creationDate;
   }
 
   public void setCategory(ItemCategory category) {
@@ -107,9 +104,9 @@ public class Item {
     }
   }
 
-  public void addContract(Member borrower, Date startDate, Date endDate) throws Exception {
+  public void addContract(Member borrower, int startDate, int endDate) throws Exception {
     // Count the number of days between the start and end date
-    int days = (int) ((endDate.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24));
+    int days = endDate - startDate;
 
     // Add 1 to the number of days, because the start date is included
     days++;
