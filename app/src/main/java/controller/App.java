@@ -146,29 +146,37 @@ public class App {
       System.out.println(newMember.getName());
 
       // Delete the member
-      adminController.deleteMember(newMember);
-      System.out.println(adminController.getMembers());
+      // adminController.deleteMember(newMember);
+      // System.out.println(adminController.getMembers());
 
       // Show the main menu
       AdminView adminView = new AdminView();
-      adminView.mainMenu();
-      MainMenuAction result = adminView.getMainMenuAction(adminView.readLine());
-      System.out.println(result);
+      MainMenuAction result = MainMenuAction.NONE;
+      while (result != MainMenuAction.EXIT) {
+        adminView.mainMenu();
+        result = adminView.getMainMenuAction(adminView.readLine());
+        System.out.println(result);
 
-      switch (result) {
-        case CREATE_MEMBER:
-          adminController.createMember("Lasse", "lasse.doe@mail.com", "1234567896", time.getTodaysDate());
+        switch (result) {
+          case CREATE_MEMBER:
+            System.out.println("Create new member");
+            System.out.println("Enter name:");
+            String name = adminView.readLine();
+            System.out.println("Enter email:");
+            String email = adminView.readLine();
+            System.out.println("Enter mobile number:");
+            String mobileNumber = adminView.readLine();
+            adminController.createMember(name, email, mobileNumber, time.getTodaysDate());
+            System.out.println("Member created!");
+
+            // adminController.createMember("Lasse", "lasse.doe@mail.com", "1234567896", time.getTodaysDate());
+        }
       }
-
       // Loop through the list of members and print their names
       for (int i = 0; i < adminController.getMembers().size(); i++) {
         System.out.println(adminController.getMembers().get(i).getName());
       }
-      System.out.println(adminController.getMembers());
 
-
-      // ^^ Vart tog John och Jane vägen?
-      
       // Add a new member with the same email
       // Member newMember2 = admin.createMember("Jane Doe", "john.doe@example", 0765432131);
       // System.out.println(newMember2.getEmail());
