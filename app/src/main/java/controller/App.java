@@ -148,10 +148,6 @@ public class App {
 
       System.out.println(newMember.getMemberID());
 
-
-      // TODO: Add method setEmail() to Member class with validation
-      // TODO: Add method setMobileNumber() to Member class with validation
-
       // ! Hur ska få Member att prata med Admin eller App? Hur får vi ut en lista med alla medlemmar som är nåbar i setEmail mm metoden i en Member? Så att vi kan kolla så att email och mobilnummer inte redan finns i systemet.
     } catch (Exception e) {
       System.out.println(e.getMessage());
