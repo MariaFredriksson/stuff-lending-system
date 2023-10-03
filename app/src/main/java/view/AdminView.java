@@ -3,8 +3,6 @@ package view;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import org.checkerframework.checker.units.qual.A;
-
 import model.Member;
 
 public class AdminView {

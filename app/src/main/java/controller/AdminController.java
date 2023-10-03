@@ -82,5 +82,12 @@ public class AdminController {
     // Delete the member
     members.remove(member);
   }
+
+  public void viewAllMembers() {
+    // ^^ Should we send the copy of the list of members to the view, or the original list?
+    ArrayList<Member> memberList = getMembers();
+
+    // Print the list of members
+    adminView.printMemberList(memberList);}
 }
 

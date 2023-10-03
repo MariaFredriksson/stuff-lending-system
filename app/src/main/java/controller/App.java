@@ -90,6 +90,9 @@ public class App {
           case DELETE_MEMBER:
             adminController.deleteMemberPrompt();
             break;
+          case VIEW_ALL_MEMBERS:
+            adminController.viewAllMembers();
+            break;
         }
 
         // ^^ Just for testing
