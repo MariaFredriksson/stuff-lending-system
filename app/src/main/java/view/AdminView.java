@@ -1,6 +1,11 @@
 package view;
 
+import java.util.ArrayList;
 import java.util.Scanner;
+
+import org.checkerframework.checker.units.qual.A;
+
+import model.Member;
 
 public class AdminView {
   
@@ -99,4 +104,19 @@ public class AdminView {
     }
     return null;
   }
+
+  public int deleteMemberPrompt(ArrayList<Member> memberList) {
+    print("Delete member");
+    print("Select member to delete:");
+    printMemberList(memberList);
+    int memberIndex = Integer.parseInt(readLine());
+    return memberIndex;
+  }
+
+  public void printMemberList(ArrayList<Member> memberList) {
+    for (int i = 0; i < memberList.size(); i++) {
+      print(i + 1 + ". " + memberList.get(i).getName());
+    }
+  }
+
 }

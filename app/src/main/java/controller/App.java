@@ -79,7 +79,7 @@ public class App {
 
             // ^^ Is this needed?
             // adminView.editMemberMenu();
-            
+
             int memberIndex = Integer.parseInt(adminView.readLine());
             Member member = memberList.get(memberIndex - 1);
             String newName = adminView.prompt("Enter name:");
@@ -87,7 +87,14 @@ public class App {
             String newMobileNumber = adminView.prompt("Enter mobile number:");
             adminController.editMember(member, newName, newEmail, newMobileNumber);
             break;
+          case DELETE_MEMBER:
+            adminController.deleteMemberPrompt();
+            break;
         }
+
+        // ^^ Just for testing
+        ArrayList <Member> members =  adminController.getMembers();
+        adminView.printMemberList(members);
       }
 
     } catch (Exception e) {

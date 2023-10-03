@@ -2,18 +2,20 @@
 package controller;
 
 import java.util.ArrayList;
-import java.util.List;
 import model.Member;
 import model.AdminModel;
+import view.AdminView;
 
 public class AdminController {
 
-  private List<Member> members;
-  private AdminModel admin; // Create an instance of model.Admin
+  private ArrayList<Member> members;
+  private AdminModel adminModel; // Create an instance of model.Admin
+  private AdminView adminView;
 
   public AdminController() {
     members = new ArrayList<>();
-    admin = new AdminModel(); // Initialize the admin instance
+    adminModel = new AdminModel(); // Initialize the admin instance
+    adminView = new AdminView();
   }
   
   public Member createMember(String name, String email, String mobileNumber, int creationDate) {
@@ -21,7 +23,7 @@ public class AdminController {
     validateEmail(email);
     validateMobileNumber(mobileNumber);
     // Create a new member using the admin instance
-    Member member = admin.createMember(name, email, mobileNumber, creationDate);
+    Member member = adminModel.createMember(name, email, mobileNumber, creationDate);
     addMemberToList(member);
     return member;
   }
@@ -31,7 +33,7 @@ public class AdminController {
     members.add(member);
   }
 
-  public List<Member> getMembers() {
+  public ArrayList<Member> getMembers() {
     // Return a copy of the list of members, so it is immutable
     return new ArrayList<Member>(members);
   }
@@ -60,6 +62,20 @@ public class AdminController {
     member.setName(name);
     member.setEmail(email);
     member.setMobileNumber(mobileNumber);
+  }
+
+  public void deleteMemberPrompt() {
+    ArrayList<Member> memberList = getMembers();
+
+    // Ask the user which member to delete
+    // ^^ Should we send the copy of the list of members to the view, or the original list?
+    int memberIndex = adminView.deleteMemberPrompt(memberList);
+
+    // Get the member from the list of members
+    Member member = memberList.get(memberIndex - 1);
+    // ^^ Or get the member from the original list of members?
+
+    deleteMember(member);
   }
 
   public void deleteMember(Member member) {
