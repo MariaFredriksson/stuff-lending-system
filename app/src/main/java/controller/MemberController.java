@@ -23,7 +23,18 @@ public class MemberController {
     // Get the member from the list of members
     Member member = members.get(memberIndex - 1);
 
-    // Ask for the category of the item, name, description and cost per day
+    //^^ Added cathegory options to the user output, does it make sence or remove/change? Maybe the output is confusing? 
+    // Get cathegory options from enum
+    ItemCategory[] categories = ItemCategory.values();
+
+    // Display category options
+    System.out.println("Category options:");
+    for (int i = 0; i < categories.length; i++) {
+      System.out.println(categories[i]);
+    }
+    //^^ This is where the added code ends. 
+
+    // Ask for the category of the item, name, description, and cost per day
     String categoryString = adminView.prompt("Enter category:");
     String name = adminView.prompt("Enter name:");
     String description = adminView.prompt("Enter description:");
@@ -94,5 +105,21 @@ public class MemberController {
 
     // Print a success message
     adminView.print("Item deleted!");
+  }
+
+  //^^ Added method to view all items, does it make sence or remove/change? 
+  // Print a list of all the items that the members own
+  public void viewAllItems(ArrayList <Member> members) {
+    // Loop through all the members
+    for (int i = 0; i < members.size(); i++) {
+      // Get the member from the list of members
+      Member member = members.get(i);
+
+      // Get the list of items from the member
+      ArrayList <Item> items = member.getOwnedItems();
+
+      // Print the list of items
+      adminView.printItemList(items);
+    }
   }
 }

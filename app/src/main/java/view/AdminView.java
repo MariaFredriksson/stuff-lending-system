@@ -72,7 +72,6 @@ public class AdminView {
     return scanner.nextLine();
   }
 
-
   public void print(String text) {
     System.out.println(text);
   }

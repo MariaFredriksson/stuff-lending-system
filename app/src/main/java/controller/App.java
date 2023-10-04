@@ -88,6 +88,10 @@ public class App {
           case DELETE_ITEM:
             memberController.deleteItemPrompt(adminController.getMembers());
             break;
+          case VIEW_ALL_ITEMS:
+          // WHERE does it print out the "1. Jane Doe" and "2. Lasse" after the added item?
+            memberController.viewAllItems(adminController.getMembers());
+            break;
         }
 
         // ^^ Just for testing
