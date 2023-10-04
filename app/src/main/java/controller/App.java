@@ -60,13 +60,7 @@ public class App {
 
         switch (result) {
           case CREATE_MEMBER:
-            // ^^ Make this into its own method maybe? But where should it be placed?
-            adminView.print("Create new member");
-            String name = adminView.prompt("Enter name:");
-            String email = adminView.prompt("Enter email:");
-            String mobileNumber = adminView.prompt("Enter mobile number:");
-            adminController.createMember(name, email, mobileNumber, time.getTodaysDate());
-            adminView.print("Member created!");
+            adminController.createMemberPrompt(time.getTodaysDate());
             break;
           case EDIT_MEMBER:
             // ^^ Also its own method maybe?

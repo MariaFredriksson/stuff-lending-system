@@ -17,6 +17,15 @@ public class AdminController {
     adminModel = new AdminModel(); // Initialize the admin instance
     adminView = new AdminView();
   }
+
+  public void createMemberPrompt(int todaysDate) {
+    adminView.print("Create new member");
+    String name = adminView.prompt("Enter name:");
+    String email = adminView.prompt("Enter email:");
+    String mobileNumber = adminView.prompt("Enter mobile number:");
+    createMember(name, email, mobileNumber, todaysDate);
+    adminView.print("Member created!");
+  }
   
   public Member createMember(String name, String email, String mobileNumber, int creationDate) {
     // Validate the email and mobile number
