@@ -82,9 +82,12 @@ public class AdminView {
   }
 
   // ^^ Is this needed?
-  public void editMemberMenu() {
-  print("Edit member");
-  print("Select a member to edit:");
+  public int editMemberPrompt(ArrayList <Member> memberList) {
+    print("Edit member");
+    print("Select a member to edit:");
+    printMemberList(memberList);
+    int memberIndex = Integer.parseInt(readLine());
+    return memberIndex;
   }
 
   // ^^ Is this needed?

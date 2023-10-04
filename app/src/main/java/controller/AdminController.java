@@ -63,6 +63,25 @@ public class AdminController {
     });
   }
 
+  public void editMemberPrompt() {
+    ArrayList<Member> memberList = getMembers();
+
+    // Ask the user which member to edit
+    // ^^ Should we send the copy of the list of members to the view, or the original list?
+    int memberIndex = adminView.editMemberPrompt(memberList);
+
+    // Get the member from the list of members
+    Member member = memberList.get(memberIndex - 1);
+    // ^^ Or get the member from the original list of members?
+
+    // Ask the user for the new name, email and mobile number
+    String newName = adminView.prompt("Enter name:");
+    String newEmail = adminView.prompt("Enter email:");
+    String newMobileNumber = adminView.prompt("Enter mobile number:");
+
+    editMember(member, newName, newEmail, newMobileNumber);
+  }
+
   public void editMember(Member member, String name, String email, String mobileNumber) {
     // Validate the email and mobile number
     validateEmail(email);
