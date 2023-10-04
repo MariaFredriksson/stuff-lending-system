@@ -3,6 +3,7 @@ package view;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import model.Item;
 import model.Member;
 
 public class AdminView {
@@ -103,11 +104,32 @@ public class AdminView {
     }
   }
 
-    public int addItemPrompt(ArrayList<Member> memberList) {
+  public int addItemPrompt(ArrayList<Member> memberList) {
     print("Add item");
     print("Select a member to add the item to:");
     printMemberList(memberList);
     int memberIndex = Integer.parseInt(readLine());
     return memberIndex;
+  }
+
+  public int editItemSelectMemberPrompt(ArrayList <Member> memberList) {
+    print("Edit item");
+    print("Select the member that owns the item you want to edit:");
+    printMemberList(memberList);
+    int memberIndex = Integer.parseInt(readLine());
+    return memberIndex;
+  }
+
+  public int editItemSelectItemPrompt(ArrayList <Item> itemList) {
+    print("Select the item you want to edit:");
+    printItemList(itemList);
+    int itemIndex = Integer.parseInt(readLine()) - 1;
+    return itemIndex;
+  }
+
+  public void printItemList (ArrayList<Item> itemList) {
+    for (int i = 0; i < itemList.size(); i++) {
+      print(i + 1 + ". " + itemList.get(i).getName());
+    }
   }
 }

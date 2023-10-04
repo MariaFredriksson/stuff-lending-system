@@ -99,6 +99,14 @@ public class Member {
     this.changeCredits(100);
   }
 
+  public void editItem(Item item, ItemCategory category, String name, String description, int costPerDay) {
+    // Edit the item
+    item.setCategory(category);
+    item.setName(name);
+    item.setDescription(description);
+    item.setCostPerDay(costPerDay);
+  }
+
   public void deleteItem(Item item) {
     // Delete the item from the list of items
     this.ownedItems.remove(item);

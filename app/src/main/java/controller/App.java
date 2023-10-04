@@ -82,6 +82,9 @@ public class App {
 
             memberController.addItemPrompt(members, time.getTodaysDate());
             break;
+          case EDIT_ITEM:
+            memberController.editItemPrompt(adminController.getMembers());
+            break;
         }
 
         // ^^ Just for testing
