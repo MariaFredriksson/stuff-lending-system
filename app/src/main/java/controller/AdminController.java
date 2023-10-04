@@ -80,6 +80,8 @@ public class AdminController {
     String newMobileNumber = adminView.prompt("Enter mobile number:");
 
     editMember(member, newName, newEmail, newMobileNumber);
+
+    adminView.print("Member edited!");
   }
 
   public void editMember(Member member, String name, String email, String mobileNumber) {

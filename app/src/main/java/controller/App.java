@@ -63,23 +63,7 @@ public class App {
             adminController.createMemberPrompt(time.getTodaysDate());
             break;
           case EDIT_MEMBER:
-            // ^^ Also its own method maybe?
-            adminView.print("Edit member");
-            adminView.print("Select member to edit:");
-            List <Member> memberList = adminController.getMembers();
-            for (int i = 0; i < memberList.size(); i++) {
-              adminView.print(i + 1 + ". " + memberList.get(i).getName());
-            }
-
-            // ^^ Is this needed?
-            // adminView.editMemberMenu();
-
-            int memberIndex = Integer.parseInt(adminView.readLine());
-            Member member = memberList.get(memberIndex - 1);
-            String newName = adminView.prompt("Enter name:");
-            String newEmail = adminView.prompt("Enter email:");
-            String newMobileNumber = adminView.prompt("Enter mobile number:");
-            adminController.editMember(member, newName, newEmail, newMobileNumber);
+            adminController.editMemberPrompt();
             break;
           case DELETE_MEMBER:
             adminController.deleteMemberPrompt();

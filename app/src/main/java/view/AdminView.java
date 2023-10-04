@@ -81,29 +81,12 @@ public class AdminView {
     return readLine();
   }
 
-  // ^^ Is this needed?
   public int editMemberPrompt(ArrayList <Member> memberList) {
     print("Edit member");
     print("Select a member to edit:");
     printMemberList(memberList);
     int memberIndex = Integer.parseInt(readLine());
     return memberIndex;
-  }
-
-  // ^^ Is this needed?
-  public MainMenuAction editMemberMenuAction(String input) {
-    if (input.length() != 1) {
-      return MainMenuAction.NONE;
-    }
-    switch (input) {
-      case "1":
-        
-        break;
-    
-      default:
-        break;
-    }
-    return null;
   }
 
   public int deleteMemberPrompt(ArrayList<Member> memberList) {
