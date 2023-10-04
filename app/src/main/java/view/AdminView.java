@@ -127,6 +127,21 @@ public class AdminView {
     return itemIndex;
   }
 
+  public int deleteItemSelectMemberPrompt(ArrayList <Member> memberList) {
+    print("Delete item");
+    print("Select the member that owns the item you want to delete:");
+    printMemberList(memberList);
+    int memberIndex = Integer.parseInt(readLine());
+    return memberIndex;
+  }
+
+  public int deleteItemSelectItemPrompt(ArrayList <Item> itemList) {
+    print("Select the item you want to delete:");
+    printItemList(itemList);
+    int itemIndex = Integer.parseInt(readLine()) - 1;
+    return itemIndex;
+  }
+
   public void printItemList (ArrayList<Item> itemList) {
     for (int i = 0; i < itemList.size(); i++) {
       print(i + 1 + ". " + itemList.get(i).getName());

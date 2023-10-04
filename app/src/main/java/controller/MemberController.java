@@ -72,4 +72,27 @@ public class MemberController {
     // Print a success message
     adminView.print("Item edited!");
   }
+
+  public void deleteItemPrompt (ArrayList <Member> members) {
+    // Ask the user for which member that owns the item that should be deleted
+    int memberIndex = adminView.deleteItemSelectMemberPrompt(members);
+
+    // Get the member from the list of members
+    Member member = members.get(memberIndex - 1);
+
+    // Get the list of items from the member
+    ArrayList <Item> items = member.getOwnedItems();
+
+    // Ask the user for which item that should be deleted
+    int itemIndex = adminView.deleteItemSelectItemPrompt(items);
+
+    // Get the item from the list of items
+    Item item = items.get(itemIndex);
+
+    // Delete the item
+    member.deleteItem(item);
+
+    // Print a success message
+    adminView.print("Item deleted!");
+  }
 }

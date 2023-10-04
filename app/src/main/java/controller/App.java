@@ -85,6 +85,9 @@ public class App {
           case EDIT_ITEM:
             memberController.editItemPrompt(adminController.getMembers());
             break;
+          case DELETE_ITEM:
+            memberController.deleteItemPrompt(adminController.getMembers());
+            break;
         }
 
         // ^^ Just for testing
@@ -93,8 +96,7 @@ public class App {
 
         // ^^ Test to print the items that member 0 owns
         ArrayList <Item> items = members.get(0).getOwnedItems();
-        // Print the name of the first item
-        System.out.println(items.get(0).getName());
+        adminView.printItemList(items);
       }
 
     } catch (Exception e) {
