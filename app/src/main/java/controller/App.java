@@ -1,5 +1,7 @@
 package controller;
 
+import model.Item;
+
 // import java.util.Date;
 
 import model.Member;
@@ -8,7 +10,6 @@ import view.AdminView;
 import view.AdminView.MainMenuAction;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import controller.AdminController;
 import model.Time;
@@ -46,6 +47,9 @@ public class App {
       // Create an admin view
       AdminView adminView = new AdminView();
 
+      // Create a member controller
+      MemberController memberController = new MemberController();
+
       // Print a welcome message when the application first starts
       adminView.print("Welcome to the Stuff Lending System!");
 
@@ -71,11 +75,23 @@ public class App {
           case VIEW_ALL_MEMBERS:
             adminController.viewAllMembers();
             break;
+          case ADD_ITEM:
+            // Get a list of all the members that exist in this program 
+            // (We can't create a new adminController anywhere else, since it won't have the list of members (much like the Time class only should be created once))
+            ArrayList <Member> members =  adminController.getMembers();
+
+            memberController.addItemPrompt(members, time.getTodaysDate());
+            break;
         }
 
         // ^^ Just for testing
         ArrayList <Member> members =  adminController.getMembers();
         adminView.printMemberList(members);
+
+        // ^^ Test to print the items that member 0 owns
+        ArrayList <Item> items = members.get(0).getOwnedItems();
+        // Print the name of the first item
+        System.out.println(items.get(0).getName());
       }
 
     } catch (Exception e) {

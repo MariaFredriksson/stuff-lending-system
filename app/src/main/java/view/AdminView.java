@@ -103,4 +103,11 @@ public class AdminView {
     }
   }
 
+    public int addItemPrompt(ArrayList<Member> memberList) {
+    print("Add item");
+    print("Select a member to add the item to:");
+    printMemberList(memberList);
+    int memberIndex = Integer.parseInt(readLine());
+    return memberIndex;
+  }
 }

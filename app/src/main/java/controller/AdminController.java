@@ -67,12 +67,10 @@ public class AdminController {
     ArrayList<Member> memberList = getMembers();
 
     // Ask the user which member to edit
-    // ^^ Should we send the copy of the list of members to the view, or the original list?
     int memberIndex = adminView.editMemberPrompt(memberList);
 
     // Get the member from the list of members
     Member member = memberList.get(memberIndex - 1);
-    // ^^ Or get the member from the original list of members?
 
     // Ask the user for the new name, email and mobile number
     String newName = adminView.prompt("Enter name:");
@@ -98,12 +96,10 @@ public class AdminController {
     ArrayList<Member> memberList = getMembers();
 
     // Ask the user which member to delete
-    // ^^ Should we send the copy of the list of members to the view, or the original list?
     int memberIndex = adminView.deleteMemberPrompt(memberList);
 
     // Get the member from the list of members
     Member member = memberList.get(memberIndex - 1);
-    // ^^ Or get the member from the original list of members?
 
     deleteMember(member);
   }
@@ -114,7 +110,6 @@ public class AdminController {
   }
 
   public void viewAllMembers() {
-    // ^^ Should we send the copy of the list of members to the view, or the original list?
     ArrayList<Member> memberList = getMembers();
 
     // Print the list of members

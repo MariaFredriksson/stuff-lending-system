@@ -88,9 +88,9 @@ public class Member {
     this.credits += credits;
   }
 
-  public void addItem(ItemCategory category, String name, String description, int costPerDay) {
+  public void addItem(ItemCategory category, String name, String description, int costPerDay, int todaysDate) {
     // Create a new item object
-    Item newItem = new Item(category, name, description, costPerDay, this, this.creationDate);
+    Item newItem = new Item(category, name, description, costPerDay, this, todaysDate);
 
     // Add the item to the list of items
     this.ownedItems.add(newItem);
