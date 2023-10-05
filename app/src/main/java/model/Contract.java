@@ -1,5 +1,8 @@
 package model;
 
+/**
+ * The Contract class represents a contract between two members.
+ */
 public class Contract {
   private Item item;
   private Member lender;
@@ -8,6 +11,16 @@ public class Contract {
   private int endDate;
   private int rentingCost;
 
+  /**
+   * Creates a new contract.
+   *
+   * @param item The item that is being borrowed.
+   * @param lender The member that is lending the item.
+   * @param borrower The member that is borrowing the item.
+   * @param startDate The date when the contract starts.
+   * @param endDate The date when the contract ends.
+   * @param rentingCost The cost of renting the item.
+   */
   public Contract(Item item, Member lender, Member borrower, int startDate, int endDate, int rentingCost) {
     this.item = item;
     this.lender = lender;
@@ -18,31 +31,63 @@ public class Contract {
   }
 
   // ^^ Are these immutable...?
+  /**
+   * Returns the item that is being borrowed.
+   *
+   * @return The item that is being borrowed.
+   */
   public Item getItem() {
     return this.item;
   }
 
+  /**
+   * Returns the member that is lending the item.
+   *
+   * @return The member that is lending the item.
+   */
   public Member getLender() {
     return this.lender;
   }
 
+  /**
+   * Returns the member that is borrowing the item.
+   *
+   * @return The member that is borrowing the item.
+   */
   public Member getBorrower() {
     return this.borrower;
   }
 
+  /**
+   * Returns the date when the contract starts.
+   *
+   * @return The date when the contract starts.
+   */
   public int getStartDate() {
     return this.startDate;
   }
 
+  /**
+   * Returns the date when the contract ends.
+   *
+   * @return The date when the contract ends.
+   */
   public int getEndDate() {
     return this.endDate;
   }
 
+  /**
+   * Returns the cost of renting the item.
+   *
+   * @return The cost of renting the item.
+   */
   public int getRentingCost() {
     return this.rentingCost;
   }
 
-  // Transfer credits from borrower to lender
+  /**
+   * Transfers credits from the borrower to the lender.
+   */
   public void transferCredits() {
     this.borrower.changeCredits(-this.rentingCost);
     this.lender.changeCredits(this.rentingCost);
