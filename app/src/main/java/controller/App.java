@@ -1,5 +1,6 @@
 package controller;
 
+import model.Contract;
 import model.Item;
 
 // import java.util.Date;
@@ -37,6 +38,9 @@ public class App {
       // Edit the member
       adminController.editMember(newMember, "Jane Doe", "jane.doe@example", "0701234569");
       System.out.println(newMember.getName());
+
+      // Add an item to the member
+      newMember.addItem(ItemCategory.Tool, "Hammer", "A tool for hammering", 10, time.getTodaysDate());
 
       // Delete the member
       // adminController.deleteMember(newMember);
@@ -89,9 +93,12 @@ public class App {
             memberController.deleteItemPrompt(adminController.getMembers());
             break;
           case VIEW_ALL_ITEMS:
-          // WHERE does it print out the "1. Jane Doe" and "2. Lasse" after the added item?
             memberController.viewAllItems(adminController.getMembers());
             break;
+          case ADD_CONTRACT:
+            memberController.addContractPrompt(adminController.getMembers(), time.getTodaysDate());
+            break;
+
         }
 
         // ^^ Just for testing

@@ -122,4 +122,64 @@ public class MemberController {
       adminView.printItemList(items);
     }
   }
+
+  public void addContractPrompt (ArrayList <Member> members, int todaysDate) throws Exception {
+    // Ask the user which item they want to rent
+    adminView.print("Select an item to rent:");
+    viewAllItems(members);
+
+    // Get a list of all the items
+    ArrayList <Item> items = new ArrayList <Item> ();
+
+    // Loop through all the members
+    for (int i = 0; i < members.size(); i++) {
+      // Get the member from the list of members
+      Member member = members.get(i);
+
+      // Get the list of items from the member
+      ArrayList <Item> memberItems = member.getOwnedItems();
+
+      // Loop through all the items
+      for (int j = 0; j < memberItems.size(); j++) {
+        // Get the item from the list of items
+        Item item = memberItems.get(j);
+
+        // Add the item to the list of items
+        items.add(item);
+      }
+    }
+
+    int itemIndex = Integer.parseInt(adminView.readLine()) - 1;
+
+    // Get the item from the list of items
+    Item item = items.get(itemIndex);
+
+    // Check that the item is available
+    if (item.getIsAvailable()) {
+      // Ask the user which member they are
+      adminView.print("Who are you?");
+      adminView.printMemberList(members);
+
+      int memberIndex = Integer.parseInt(adminView.readLine()) - 1;
+
+      // Get the member from the list of members
+      Member borrowingMember = members.get(memberIndex);
+
+      // Ask the user for the number of days they want to rent the item
+      int numberOfDays = Integer.parseInt(adminView.prompt("Enter number of days that you want to borrow the item (not including today)"));
+
+      // Calculate the end date
+      int endDate = todaysDate + numberOfDays;
+
+      // Add the contract
+      item.addContract(borrowingMember, todaysDate, endDate);
+
+      // Print a success message
+      adminView.print("Contract added!");
+    } else {
+      // Print an error message
+      adminView.print("Item is not available");
+    }
+  }
+
 }

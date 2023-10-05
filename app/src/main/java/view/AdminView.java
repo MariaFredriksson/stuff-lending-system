@@ -18,7 +18,8 @@ public class AdminView {
     print("6. Edit item");
     print("7. Delete item");
     print("8. View all items");
-    print("9. View all contracts");
+    print("9. Add contract");
+    print("0. View all contracts");
     print("Q. Exit");
   }
 
@@ -32,6 +33,7 @@ public class AdminView {
     EDIT_ITEM,
     DELETE_ITEM,
     VIEW_ALL_ITEMS,
+    ADD_CONTRACT,
     VIEW_ALL_CONTRACTS,
     EXIT
   }
@@ -58,6 +60,8 @@ public class AdminView {
       case "8":
         return MainMenuAction.VIEW_ALL_ITEMS;
       case "9":
+        return MainMenuAction.ADD_CONTRACT;
+      case "0":
         return MainMenuAction.VIEW_ALL_CONTRACTS;
       case "Q":
       case "q":
