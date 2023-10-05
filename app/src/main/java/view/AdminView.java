@@ -107,6 +107,19 @@ public class AdminView {
     }
   }
 
+  public void printMemberListSimple(ArrayList<Member> memberList) {
+    for (int i = 0; i < memberList.size(); i++) {
+      print(i + 1 + ". " + memberList.get(i).getName());
+      print(" Email: " + memberList.get(i).getEmail());
+      print(" Credits: " + memberList.get(i).getCredits());
+      print(" Number of owned items: " + memberList.get(i).getOwnedItems().size());
+    }
+  }
+
+  public void printMemberListVerbose(ArrayList<Member> memberList) {
+
+  }
+
   public int addItemPrompt(ArrayList<Member> memberList) {
     print("Add item");
     print("Select a member to add the item to:");

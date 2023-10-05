@@ -112,7 +112,16 @@ public class AdminController {
   public void viewAllMembers() {
     ArrayList<Member> memberList = getMembers();
 
-    // Print the list of members
-    adminView.printMemberList(memberList);}
+    // Ask the user in which way they want to view the members
+    int viewOption = Integer.parseInt(adminView.prompt("View members in:\n1. A simple way\n2. A verbose way"));
+
+    if (viewOption == 1) {
+      // Print the list of members
+      adminView.printMemberListSimple(memberList);
+    } else if (viewOption == 2) {
+      // Print the list of members
+      adminView.printMemberListVerbose(memberList);
+    }
+  }
 }
 
