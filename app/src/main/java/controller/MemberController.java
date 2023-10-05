@@ -2,6 +2,7 @@ package controller;
 
 import java.util.ArrayList;
 
+import model.Contract;
 import model.Item;
 import model.Member;
 import model.Item.ItemCategory;
@@ -129,25 +130,7 @@ public class MemberController {
     viewAllItems(members);
 
     // Get a list of all the items
-    ArrayList <Item> items = new ArrayList <Item> ();
-
-    // Loop through all the members
-    for (int i = 0; i < members.size(); i++) {
-      // Get the member from the list of members
-      Member member = members.get(i);
-
-      // Get the list of items from the member
-      ArrayList <Item> memberItems = member.getOwnedItems();
-
-      // Loop through all the items
-      for (int j = 0; j < memberItems.size(); j++) {
-        // Get the item from the list of items
-        Item item = memberItems.get(j);
-
-        // Add the item to the list of items
-        items.add(item);
-      }
-    }
+    ArrayList <Item> items = getAllItems(members);
 
     int itemIndex = Integer.parseInt(adminView.readLine()) - 1;
 
@@ -182,4 +165,66 @@ public class MemberController {
     }
   }
 
+  // ! Vad tror du om detta Madde? Går och tar en macka så länge :)
+  public void viewAllItemInformation (ArrayList <Member> members) {
+    // Get all the items from all the members
+    ArrayList <Item> items = getAllItems(members);
+
+    // Loop through all the items and print all the information about the items
+    for (int i = 0; i < items.size(); i++) {
+      // Get the item from the list of items
+      Item item = items.get(i);
+
+      // Get the list of contracts from the item
+      ArrayList <Contract> contracts = item.getContractList();
+
+      // Print the name, category, description, cost per day, owner, and contracts
+      adminView.print("Name: " + item.getName());
+      adminView.print("Category: " + item.getCategory());
+      adminView.print("Description: " + item.getDescription());
+      adminView.print("Cost per day: " + item.getCostPerDay());
+      adminView.print("Owner: " + item.getOwner().getName());
+
+      // Print the contracts, if there are any
+      if (contracts.size() > 0) {
+        adminView.print("Contracts: ");
+
+        // Loop through all the contracts
+        for (int j = 0; j < contracts.size(); j++) {
+          // Get the contract from the list of contracts
+          Contract contract = contracts.get(j);
+
+          // Print the contract
+          adminView.print(" Borrowing member: " + contract.getBorrower().getName());
+          adminView.print(" Start date: " + contract.getStartDate());
+          adminView.print(" End date: " + contract.getEndDate());
+      }
+      } else {
+        adminView.print("No contracts");
+      }
+    }
+  }
+
+  private ArrayList <Item> getAllItems (ArrayList <Member> members) {
+    ArrayList <Item> items = new ArrayList <Item> ();
+
+    // Loop through all the members
+    for (int i = 0; i < members.size(); i++) {
+      // Get the member from the list of members
+      Member member = members.get(i);
+
+      // Get the list of items from the member
+      ArrayList <Item> memberItems = member.getOwnedItems();
+
+      // Loop through all the items
+      for (int j = 0; j < memberItems.size(); j++) {
+        // Get the item from the list of items
+        Item item = memberItems.get(j);
+
+        // Add the item to the list of items
+        items.add(item);
+      }
+    }
+    return items;
+  }
 }

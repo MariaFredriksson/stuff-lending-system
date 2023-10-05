@@ -46,7 +46,16 @@ public class App {
       // adminController.deleteMember(newMember);
       // System.out.println(adminController.getMembers());
 
-        adminController.createMember("Lasse", "lasse.doe@mail.com", "1234567896", time.getTodaysDate());
+      Member lasse = adminController.createMember("Lasse", "lasse.doe@mail.com", "1234567896", time.getTodaysDate());
+
+      // Add an item to the member lasse
+      lasse.addItem(ItemCategory.Tool, "Screwdriver", "A tool for screwing", 12, time.getTodaysDate());
+
+      // Add a contract where Jane Doe borrows Lasse's screwdriver
+      lasse.getOwnedItems().get(0).addContract(newMember, time.getTodaysDate(), time.getTodaysDate() + 7);
+
+      // Add a contract where Lasse borrows Jane Doe's hammer
+      newMember.getOwnedItems().get(0).addContract(lasse, time.getTodaysDate(), time.getTodaysDate() + 5);
       
       // Create an admin view
       AdminView adminView = new AdminView();
@@ -98,16 +107,18 @@ public class App {
           case ADD_CONTRACT:
             memberController.addContractPrompt(adminController.getMembers(), time.getTodaysDate());
             break;
-
+          case VIEW_ALL_ITEM_INFORMATION:
+            memberController.viewAllItemInformation(adminController.getMembers());
+            break;
         }
 
-        // ^^ Just for testing
-        ArrayList <Member> members =  adminController.getMembers();
-        adminView.printMemberList(members);
+        // // ^^ Just for testing
+        // ArrayList <Member> members =  adminController.getMembers();
+        // adminView.printMemberList(members);
 
-        // ^^ Test to print the items that member 0 owns
-        ArrayList <Item> items = members.get(0).getOwnedItems();
-        adminView.printItemList(items);
+        // // ^^ Test to print the items that member 0 owns
+        // ArrayList <Item> items = members.get(0).getOwnedItems();
+        // adminView.printItemList(items);
       }
 
     } catch (Exception e) {

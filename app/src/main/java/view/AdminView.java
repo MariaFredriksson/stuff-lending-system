@@ -19,7 +19,7 @@ public class AdminView {
     print("7. Delete item");
     print("8. View all items");
     print("9. Add contract");
-    print("0. View all contracts");
+    print("0. View all item information");
     print("Q. Exit");
   }
 
@@ -34,7 +34,7 @@ public class AdminView {
     DELETE_ITEM,
     VIEW_ALL_ITEMS,
     ADD_CONTRACT,
-    VIEW_ALL_CONTRACTS,
+    VIEW_ALL_ITEM_INFORMATION,
     EXIT
   }
 
@@ -62,7 +62,7 @@ public class AdminView {
       case "9":
         return MainMenuAction.ADD_CONTRACT;
       case "0":
-        return MainMenuAction.VIEW_ALL_CONTRACTS;
+        return MainMenuAction.VIEW_ALL_ITEM_INFORMATION;
       case "Q":
       case "q":
         return MainMenuAction.EXIT;
