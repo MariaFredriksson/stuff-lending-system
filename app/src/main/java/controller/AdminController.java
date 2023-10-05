@@ -2,6 +2,8 @@ package controller;
 
 import java.util.ArrayList;
 import model.AdminModel;
+import model.Contract;
+import model.Item;
 import model.Member;
 import model.Time;
 import view.AdminView;
@@ -186,12 +188,42 @@ public class AdminController {
     }
   }
 
-  public void viewAdminMenu(Time time) {
+  // ^^ Is it okay to get another controller as an input argument?
+  public void viewAdminMenu(Time time, MemberController memberController) {
     // Ask what the user wants to do
     int action = Integer.parseInt(adminView.prompt("What do you want to do?\n1. Increase day count with one"));
     if (action == 1) {
-      adminModel.increaseDayCount(time);
+      increaseDayCount(time, memberController);
     }
+  }
+
+  public void increaseDayCount(Time time, MemberController memberController) {
+    time.advanceDayCounter();
+
+    // Print the new date
+    adminView.print("The new date is: " + time.getTodaysDate());
+
+    checkForExpiredContracts(time, memberController);
+  }
+
+  private void checkForExpiredContracts(Time time, MemberController memberController) {
+    // Get all items that exist in the program
+    ArrayList<Item> items = memberController.getAllItems(members);
+
+    // Loop through all the items
+    items.forEach(item -> {
+      // Get all the contracts for the item
+      ArrayList<Contract> contracts = item.getContractList();
+
+      // Loop through all the contracts
+      contracts.forEach(contract -> {
+        // Check if the contract has expired and if the item is not set to available
+        if (contract.getEndDate() < time.getTodaysDate() && !item.getIsAvailable()) {
+          // Set the item to available
+          item.setIsAvailable(true);
+        }
+      });
+    });
   }
 }
 

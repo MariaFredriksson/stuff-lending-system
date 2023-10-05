@@ -53,9 +53,5 @@ public class AdminModel {
 
     return stringBuilder.toString();
   }
-
-  public void increaseDayCount(Time time) {
-    time.advanceDayCounter();
-  }
 }
 

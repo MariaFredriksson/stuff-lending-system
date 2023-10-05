@@ -134,23 +134,12 @@ public class MemberController {
    * @param members The list of members.
    */
   public void viewAllItemsName(ArrayList<Member> members) {
-    ArrayList<Item> items = new ArrayList<Item>();
-    // Loop through all the members
-    for (int i = 0; i < members.size(); i++) {
-      // Get the member from the list of members
-      Member member = members.get(i);
-
-      // Get the list of items from the member
-      ArrayList<Item> itemsToAdd = member.getOwnedItems();
-
-      // Add the itemsToAdd to the list of items
-      items.addAll(itemsToAdd);
-    }
+    ArrayList<Item> items = getAllItems(members);
     // Print the list of items
     adminView.printItemList(items);
   }
 
-  public void viweAllItems(ArrayList<Member> members) {
+  public void viewAllItems(ArrayList<Member> members) {
     // Ask user which way to view the items?
     int viewOption = Integer.parseInt(adminView.prompt("How do you want to view the items? \n 1. Only names \n 2. All information."));
     
@@ -262,7 +251,7 @@ public class MemberController {
    *
    * @param members The list of members.
    */
-  private ArrayList<Item> getAllItems(ArrayList<Member> members) {
+  public ArrayList<Item> getAllItems(ArrayList<Member> members) {
     ArrayList<Item> items = new ArrayList<Item>();
 
     // Loop through all the members

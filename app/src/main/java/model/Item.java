@@ -163,6 +163,10 @@ public class Item {
     this.costPerDay = costPerDay;
   }
 
+  public void setIsAvailable(boolean isAvailable) {
+    this.isAvailable = isAvailable;
+  }
+
   /**
    * Checks if the borrower has enough credits to rent the item for the specified number of days.
    *
@@ -226,6 +230,7 @@ public class Item {
       throw new IllegalArgumentException("Not enough credits to rent the item for " + days + " days.");
     }
 
+    // Calculate the cost of renting the item for the whole duration of the contract
     int rentingCost = this.costPerDay * days;
 
     // Create a new contract object
@@ -237,7 +242,7 @@ public class Item {
     // Set the item to unavailable
     this.isAvailable = false;
 
-    // Transfer credits from borrower to owner
+    // Transfer credits from borrower to owner for the whole duration of the contract
     contract.transferCredits();
   }
 }
