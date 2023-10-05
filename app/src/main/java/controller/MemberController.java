@@ -1,21 +1,35 @@
 package controller;
 
 import java.util.ArrayList;
-
 import model.Contract;
 import model.Item;
-import model.Member;
 import model.Item.ItemCategory;
+import model.Member;
 import view.AdminView;
 
+
+/**
+ * The MemberController class is responsible for controlling interactions between the
+ * MemberModel and MemberView. It manages the creation, editing, and deletion of items,
+ * as well as displaying item information.
+ */
 public class MemberController {
   private AdminView adminView;
 
+  /**
+   * Constructor to initialize the MemberController with an instance of AdminView.
+   */
   public MemberController() {
     adminView = new AdminView();
   }
 
-  public void addItemPrompt(ArrayList <Member> members, int todaysDate) {
+  /**
+   * Prompts the user to create a new item and adds the item to the list of items.
+   *
+   * @param members The list of members.
+   * @param todaysDate The current date for item creation.
+   */
+  public void addItemPrompt(ArrayList<Member> members, int todaysDate) {
     // ^^ Can we use the admin view here? Or should we create a new member view?
 
     // Ask for which member to add the item to
@@ -24,7 +38,6 @@ public class MemberController {
     // Get the member from the list of members
     Member member = members.get(memberIndex - 1);
 
-    //^^ Added cathegory options to the user output, does it make sence or remove/change? Maybe the output is confusing? 
     // Get cathegory options from enum
     ItemCategory[] categories = ItemCategory.values();
 
@@ -33,15 +46,12 @@ public class MemberController {
     for (int i = 0; i < categories.length; i++) {
       System.out.println(categories[i]);
     }
-    //^^ This is where the added code ends. 
 
     // Ask for the category of the item, name, description, and cost per day
     String categoryString = adminView.prompt("Enter category:");
     String name = adminView.prompt("Enter name:");
     String description = adminView.prompt("Enter description:");
     int costPerDay = Integer.parseInt(adminView.prompt("Enter cost per day:"));
-
-    // ^^ Should we validate the category and give some user friendly feedback if it is invalid? Or should we just let the program crash? Or should we just let the user enter the category again? Or should we have the user to chose from a list of categories?
 
     // Convert the category string to an enum
     ItemCategory category = ItemCategory.valueOf(categoryString);
@@ -53,7 +63,12 @@ public class MemberController {
     adminView.print("Item added!");
   }
 
-  public void editItemPrompt (ArrayList <Member> members) {
+  /**
+   * Prompts the user to edit an item and edits the item.
+   *
+   * @param members The list of members.
+   */
+  public void editItemPrompt(ArrayList<Member> members) {
     // Ask the user for which member that owns the item that should be edited
     int memberIndex = adminView.editItemSelectMemberPrompt(members);
 
@@ -61,7 +76,7 @@ public class MemberController {
     Member member = members.get(memberIndex - 1);
 
     // Get the list of items from the member
-    ArrayList <Item> items = member.getOwnedItems();
+    ArrayList<Item> items = member.getOwnedItems();
 
     // Ask the user for which item that should be edited
     int itemIndex = adminView.editItemSelectItemPrompt(items);
@@ -85,7 +100,12 @@ public class MemberController {
     adminView.print("Item edited!");
   }
 
-  public void deleteItemPrompt (ArrayList <Member> members) {
+  /**
+   * Prompts the user to delete an item and deletes the item.
+   *
+   * @param members The list of members.
+   */
+  public void deleteItemPrompt(ArrayList<Member> members) {
     // Ask the user for which member that owns the item that should be deleted
     int memberIndex = adminView.deleteItemSelectMemberPrompt(members);
 
@@ -93,7 +113,7 @@ public class MemberController {
     Member member = members.get(memberIndex - 1);
 
     // Get the list of items from the member
-    ArrayList <Item> items = member.getOwnedItems();
+    ArrayList<Item> items = member.getOwnedItems();
 
     // Ask the user for which item that should be deleted
     int itemIndex = adminView.deleteItemSelectItemPrompt(items);
@@ -108,16 +128,20 @@ public class MemberController {
     adminView.print("Item deleted!");
   }
 
-  // Print a list of all the items that the members own
-  public void viewAllItems(ArrayList <Member> members) {
-    ArrayList <Item> items = new ArrayList <Item> ();
+  /**
+   * Prompts the user to view all items and displays all items.
+   *
+   * @param members The list of members.
+   */
+  public void viewAllItems(ArrayList<Member> members) {
+    ArrayList<Item> items = new ArrayList<Item>();
     // Loop through all the members
     for (int i = 0; i < members.size(); i++) {
       // Get the member from the list of members
       Member member = members.get(i);
 
       // Get the list of items from the member
-      ArrayList <Item> itemsToAdd = member.getOwnedItems();
+      ArrayList<Item> itemsToAdd = member.getOwnedItems();
 
       // Add the itemsToAdd to the list of items
       items.addAll(itemsToAdd);
@@ -126,13 +150,19 @@ public class MemberController {
     adminView.printItemList(items);
   }
 
-  public void addContractPrompt (ArrayList <Member> members, int todaysDate) throws Exception {
+  /**
+   * Prompts the user to view all items of a specific category and displays all items of that
+   * category.
+   *
+   * @param members The list of members.
+   */
+  public void addContractPrompt(ArrayList<Member> members, int todaysDate) throws Exception {
     // Ask the user which item they want to rent
     adminView.print("Select an item to rent:");
     viewAllItems(members);
 
     // Get a list of all the items
-    ArrayList <Item> items = getAllItems(members);
+    ArrayList<Item> items = getAllItems(members);
 
     int itemIndex = Integer.parseInt(adminView.readLine()) - 1;
 
@@ -151,7 +181,7 @@ public class MemberController {
       Member borrowingMember = members.get(memberIndex);
 
       // Ask the user for the number of days they want to rent the item
-      int numberOfDays = Integer.parseInt(adminView.prompt("Enter number of days that you want to borrow the item (not including today)"));
+      int numberOfDays = Integer.parseInt(adminView.prompt("Enter number of days to borrow the item:"));
 
       // Calculate the end date
       int endDate = todaysDate + numberOfDays;
@@ -167,9 +197,15 @@ public class MemberController {
     }
   }
 
-  public void viewAllItemInformation (ArrayList <Member> members) {
+  /**
+   * Prompts the user to view all items of a specific category and displays all items of that
+   * category.
+   *
+   * @param members The list of members.
+   */
+  public void viewAllItemInformation(ArrayList<Member> members) {
     // Get all the items from all the members
-    ArrayList <Item> items = getAllItems(members);
+    ArrayList<Item> items = getAllItems(members);
 
     // Loop through all the items and print all the information about the items
     for (int i = 0; i < items.size(); i++) {
@@ -177,10 +213,10 @@ public class MemberController {
       Item item = items.get(i);
 
       // Get the list of contracts from the item
-      ArrayList <Contract> contracts = item.getContractList();
+      ArrayList<Contract> contracts = item.getContractList();
 
       // Print the name, category, description, cost per day, owner, and contracts
-      adminView.print(i + 1 +". Name: " + item.getName());
+      adminView.print(i + 1 + ". Name: " + item.getName());
       adminView.print("Category: " + item.getCategory());
       adminView.print("Description: " + item.getDescription());
       adminView.print("Cost per day: " + item.getCostPerDay());
@@ -199,15 +235,20 @@ public class MemberController {
           adminView.print(" Borrowing member: " + contract.getBorrower().getName());
           adminView.print(" Start date: " + contract.getStartDate());
           adminView.print(" End date: " + contract.getEndDate());
-      }
+        }
       } else {
         adminView.print("No contracts");
       }
     }
   }
 
-  private ArrayList <Item> getAllItems (ArrayList <Member> members) {
-    ArrayList <Item> items = new ArrayList <Item> ();
+  /**
+   * Prompts the user to view all items.
+   *
+   * @param members The list of members.
+   */
+  private ArrayList<Item> getAllItems(ArrayList<Member> members) {
+    ArrayList<Item> items = new ArrayList<Item>();
 
     // Loop through all the members
     for (int i = 0; i < members.size(); i++) {
@@ -215,7 +256,7 @@ public class MemberController {
       Member member = members.get(i);
 
       // Get the list of items from the member
-      ArrayList <Item> memberItems = member.getOwnedItems();
+      ArrayList<Item> memberItems = member.getOwnedItems();
 
       // Loop through all the items
       for (int j = 0; j < memberItems.size(); j++) {
