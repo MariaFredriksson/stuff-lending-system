@@ -2,6 +2,7 @@ package controller;
 
 import java.util.ArrayList;
 import model.Item.ItemCategory;
+import model.AdminModel;
 import model.Member;
 import model.Time;
 import view.AdminView;
@@ -20,38 +21,13 @@ public class App {
     try {
 
       Time time = new Time();
-
-      // Add a new member to the members list
       AdminController adminController = new AdminController();
-      Member newMember = adminController.createMember(
-          "John Doe",
-          "john.doe@example",
-          "1234567891",
-          time.getTodaysDate());
-
-      // Edit the member
-      adminController.editMember(newMember, "Jane Doe", "jane.doe@example", "0701234569");
-
-      // Add an item to the member
-      newMember.addItem(ItemCategory.Tool, "Hammer", "A tool for hammering", 10, time.getTodaysDate());
-
-
-      Member lasse = adminController.createMember("Lasse", "lasse.doe@mail.com", "1234567896", time.getTodaysDate());
-
-      // Add an item to the member lasse
-      lasse.addItem(ItemCategory.Tool, "Screwdriver", "A tool for screwing", 12, time.getTodaysDate());
-
-      // Add a contract where Jane Doe borrows Lasse's screwdriver
-      lasse.getOwnedItems().get(0).addContract(newMember, time.getTodaysDate(), time.getTodaysDate() + 7);
-
-      // Add a contract where Lasse borrows Jane Doe's hammer
-      newMember.getOwnedItems().get(0).addContract(lasse, time.getTodaysDate(), time.getTodaysDate() + 5);
-      
-      // Create an admin view
+      AdminModel adminModel = adminController.getAdminModel();
       AdminView adminView = new AdminView();
-
-      // Create a member controller
       MemberController memberController = new MemberController();
+
+      // Add some members, items, and contracts to start with
+      addDefaultData(adminModel, time);
 
       // Print a welcome message when the application first starts
       adminView.print("Welcome to the Stuff Lending System!");
@@ -113,5 +89,25 @@ public class App {
     } catch (Exception e) {
       System.out.println(e.getMessage());
     }
+  }
+
+  private static void addDefaultData(AdminModel adminModel, Time time) throws Exception {
+      // Add a new member to the members list
+      Member jane = adminModel.createMember("Jane Doe", "jane.doe@example", "0701234569", time.getTodaysDate());
+
+      // Add an item to the member jane
+      jane.addItem(ItemCategory.Tool, "Hammer", "A tool for hammering", 10, time.getTodaysDate());
+
+
+      Member lasse = adminModel.createMember("Lasse", "lasse.doe@mail.com", "1234567896", time.getTodaysDate());
+
+      // Add an item to the member lasse
+      lasse.addItem(ItemCategory.Tool, "Screwdriver", "A tool for screwing", 12, time.getTodaysDate());
+
+      // Add a contract where Jane Doe borrows Lasse's screwdriver
+      lasse.getOwnedItems().get(0).addContract(jane, time.getTodaysDate(), time.getTodaysDate() + 7);
+
+      // Add a contract where Lasse borrows Jane Doe's hammer
+      jane.getOwnedItems().get(0).addContract(lasse, time.getTodaysDate(), time.getTodaysDate() + 5);
   }
 }

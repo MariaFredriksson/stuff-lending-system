@@ -12,6 +12,8 @@ import model.Member;
  */
 public class AdminView {
   
+  // ^^ Should we have everything about main menu in its own view maybe?
+  // ^^ If so; how should we handle print(), prompt(), readLine() to make the code DRY? Interface...? Inherit...?
   /**
    * Displays the main menu.
    */
