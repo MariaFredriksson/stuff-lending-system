@@ -83,11 +83,11 @@ public class AdminController {
 
   private void validateEmail(String email) {
     members.forEach(member -> {
-      if (member.getEmail() == email) {
+      if (member.getEmail().equals(email)) {
         throw new IllegalArgumentException("Email already exists");
       }
     });
-  }
+  } 
 
   /**
    * Validates that the mobile number is unique.
@@ -97,11 +97,12 @@ public class AdminController {
    */
   private void validateMobileNumber(String mobileNumber) {
     members.forEach(member -> {
-      if (member.getMobileNumber() == mobileNumber) {
+      if (member.getMobileNumber().equals(mobileNumber)) {
         throw new IllegalArgumentException("Mobile number already exists");
       }
     });
   }
+
 
   /**
    * Prompts the user to edit a member and edits the member.

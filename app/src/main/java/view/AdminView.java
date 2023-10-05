@@ -1,5 +1,6 @@
 package view;
 
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Scanner;
 import model.Contract;
@@ -93,7 +94,7 @@ public class AdminView {
    * @return The line that was read.
    */
   public String readLine() {
-    Scanner scanner = new Scanner(System.in);
+    Scanner scanner = new Scanner(System.in, StandardCharsets.UTF_8.name());
     return scanner.nextLine();
   }
 
