@@ -41,13 +41,13 @@ public class AdminModel {
    * @return The random member ID.
    */
   private String generateMemberId(int length) {
-    String Characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
     Random random = new Random();
     StringBuilder stringBuilder = new StringBuilder(length);
 
     for (int i = 0; i < length; i++) {
-      int randomIndex = random.nextInt(Characters.length());
-      char randomChar = Characters.charAt(randomIndex);
+      int randomIndex = random.nextInt(characters.length());
+      char randomChar = characters.charAt(randomIndex);
       stringBuilder.append(randomChar);
     }
 

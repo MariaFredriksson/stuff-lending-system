@@ -214,7 +214,9 @@ public class AdminView {
             Contract contract = contracts.get(k);
   
             // Print the information about the contract
-            print("     Contract time period: " + String.valueOf(contract.getStartDate()) + " - " + String.valueOf(contract.getEndDate()));
+            print("     Contract time period: " 
+                + String.valueOf(contract.getStartDate()) 
+                + " - " + String.valueOf(contract.getEndDate()));
             print("     Borrower: " + contract.getBorrower().getName());
           }
         } else {

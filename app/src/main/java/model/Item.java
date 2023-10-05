@@ -202,7 +202,7 @@ public class Item {
    * @param endDate The date when the contract ends.
    *
    * @throws Exception If the number of days is negative or 0, the item is not available, or the
-    * borrower does not have enough credits.
+     * borrower does not have enough credits.
    */
   public void addContract(Member borrower, int startDate, int endDate) throws Exception {
     // Count the number of days between the start and end date

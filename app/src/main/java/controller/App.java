@@ -1,7 +1,7 @@
 package controller;
 
-import model.Item.ItemCategory;
 import java.util.ArrayList;
+import model.Item.ItemCategory;
 import model.Member;
 import model.Time;
 import view.AdminView;
@@ -13,8 +13,8 @@ import view.AdminView.MainMenuAction;
 public class App {
   /**
    * Application starting point.
-   * @param args command line arguments.
    *
+   * @param args command line arguments.
    */
   public static void main(String[] args) {
     try {
@@ -23,7 +23,11 @@ public class App {
 
       // Add a new member to the members list
       AdminController adminController = new AdminController();
-      Member newMember = adminController.createMember("John Doe", "john.doe@example", "1234567891", time.getTodaysDate());
+      Member newMember = adminController.createMember(
+          "John Doe",
+          "john.doe@example",
+          "1234567891",
+          time.getTodaysDate());
 
       // Edit the member
       adminController.editMember(newMember, "Jane Doe", "jane.doe@example", "0701234569");
@@ -76,7 +80,8 @@ public class App {
             break;
           case ADD_ITEM:
             // Get a list of all the members that exist in this program 
-            // (We can't create a new adminController anywhere else, since it won't have the list of members (much like the Time class only should be created once))
+            // (We can't create a new adminController anywhere else,
+            // since it won't have the list of members (much like the Time class only should be created once))
             ArrayList<Member> members =  adminController.getMembers();
 
             memberController.addItemPrompt(members, time.getTodaysDate());

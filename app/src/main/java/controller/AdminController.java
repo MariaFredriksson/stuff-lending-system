@@ -11,19 +11,9 @@ import view.AdminView;
  * as well as displaying member information.
  */
 public class AdminController {
-  /**
-   * List to store the members managed by the controller.
-   */
+
   private ArrayList<Member> members;
-
-  /**
-   * Instance of AdminModel used for member creation.
-   */
   private AdminModel adminModel;
-
-  /**
-   * Instance of AdminView used for printing and prompting.
-   */
   private AdminView adminView;
 
   /**
