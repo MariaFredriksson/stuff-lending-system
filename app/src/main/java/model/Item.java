@@ -113,9 +113,6 @@ public class Item {
     // Check if the days are valid
     this.checkValidDays(days);
 
-    // ^^ Delete this later
-    System.out.println(days);
-
     // Check if the item is available
     if (!this.isAvailable) {
       // Throw an exception if the item is not available

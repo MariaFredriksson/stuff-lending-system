@@ -1,10 +1,5 @@
 package controller;
 
-import model.Contract;
-import model.Item;
-
-// import java.util.Date;
-
 import model.Member;
 import model.Item.ItemCategory;
 import view.AdminView;
@@ -12,7 +7,6 @@ import view.AdminView.MainMenuAction;
 
 import java.util.ArrayList;
 
-import controller.AdminController;
 import model.Time;
 
 /**
@@ -32,19 +26,13 @@ public class App {
       // Add a new member to the members list
       AdminController adminController = new AdminController();
       Member newMember = adminController.createMember("John Doe", "john.doe@example", "1234567891", time.getTodaysDate());
-      System.out.println(newMember.getName());
-      System.out.println(newMember.getCreationDate());
 
       // Edit the member
       adminController.editMember(newMember, "Jane Doe", "jane.doe@example", "0701234569");
-      System.out.println(newMember.getName());
 
       // Add an item to the member
       newMember.addItem(ItemCategory.Tool, "Hammer", "A tool for hammering", 10, time.getTodaysDate());
 
-      // Delete the member
-      // adminController.deleteMember(newMember);
-      // System.out.println(adminController.getMembers());
 
       Member lasse = adminController.createMember("Lasse", "lasse.doe@mail.com", "1234567896", time.getTodaysDate());
 
@@ -73,7 +61,7 @@ public class App {
       while (result != MainMenuAction.EXIT) {
         adminView.mainMenu();
         result = adminView.getMainMenuAction(adminView.readLine());
-        System.out.println(result);
+        // System.out.println(result);
 
         switch (result) {
           case CREATE_MEMBER:
@@ -110,15 +98,13 @@ public class App {
           case VIEW_ALL_ITEM_INFORMATION:
             memberController.viewAllItemInformation(adminController.getMembers());
             break;
+          case EXIT:
+            adminView.print("Goodbye!");
+            break;
+          default:
+            adminView.print("Invalid input");
+            break;
         }
-
-        // // ^^ Just for testing
-        // ArrayList <Member> members =  adminController.getMembers();
-        // adminView.printMemberList(members);
-
-        // // ^^ Test to print the items that member 0 owns
-        // ArrayList <Item> items = members.get(0).getOwnedItems();
-        // adminView.printItemList(items);
       }
 
     } catch (Exception e) {

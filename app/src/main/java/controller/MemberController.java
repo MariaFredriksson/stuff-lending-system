@@ -108,20 +108,22 @@ public class MemberController {
     adminView.print("Item deleted!");
   }
 
-  //^^ Added method to view all items, does it make sence or remove/change? 
   // Print a list of all the items that the members own
   public void viewAllItems(ArrayList <Member> members) {
+    ArrayList <Item> items = new ArrayList <Item> ();
     // Loop through all the members
     for (int i = 0; i < members.size(); i++) {
       // Get the member from the list of members
       Member member = members.get(i);
 
       // Get the list of items from the member
-      ArrayList <Item> items = member.getOwnedItems();
+      ArrayList <Item> itemsToAdd = member.getOwnedItems();
 
-      // Print the list of items
-      adminView.printItemList(items);
+      // Add the itemsToAdd to the list of items
+      items.addAll(itemsToAdd);
     }
+    // Print the list of items
+    adminView.printItemList(items);
   }
 
   public void addContractPrompt (ArrayList <Member> members, int todaysDate) throws Exception {
@@ -178,7 +180,7 @@ public class MemberController {
       ArrayList <Contract> contracts = item.getContractList();
 
       // Print the name, category, description, cost per day, owner, and contracts
-      adminView.print("Name: " + item.getName());
+      adminView.print(i + 1 +". Name: " + item.getName());
       adminView.print("Category: " + item.getCategory());
       adminView.print("Description: " + item.getDescription());
       adminView.print("Cost per day: " + item.getCostPerDay());

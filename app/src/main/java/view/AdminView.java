@@ -125,7 +125,7 @@ public class AdminView {
       Member member = memberList.get(i);
 
       // Print the name and email of the member
-      print(i + 1 + ". " + memberList.get(i).getName());
+      print(i + 1 + ". Name: " + memberList.get(i).getName());
       print(" Email: " + memberList.get(i).getEmail());
 
       // Get the list of items from the member
