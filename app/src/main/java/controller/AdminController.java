@@ -3,6 +3,7 @@ package controller;
 import java.util.ArrayList;
 import model.AdminModel;
 import model.Member;
+import model.Time;
 import view.AdminView;
 
 /**
@@ -103,7 +104,6 @@ public class AdminController {
     });
   }
 
-
   /**
    * Prompts the user to edit a member and edits the member.
    */
@@ -183,6 +183,14 @@ public class AdminController {
     } else if (viewOption == 2) {
       // Print the list of members
       adminView.printMemberListVerbose(memberList);
+    }
+  }
+
+  public void viewAdminMenu(Time time) {
+    // Ask what the user wants to do
+    int action = Integer.parseInt(adminView.prompt("What do you want to do?\n1. Increase day count with one"));
+    if (action == 1) {
+      adminModel.increaseDayCount(time);
     }
   }
 }

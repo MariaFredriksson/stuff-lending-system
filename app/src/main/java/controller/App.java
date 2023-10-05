@@ -93,13 +93,13 @@ public class App {
             memberController.deleteItemPrompt(adminController.getMembers());
             break;
           case VIEW_ALL_ITEMS:
-            memberController.viewAllItems(adminController.getMembers());
+            memberController.viweAllItems(adminController.getMembers());
             break;
           case ADD_CONTRACT:
             memberController.addContractPrompt(adminController.getMembers(), time.getTodaysDate());
             break;
-          case VIEW_ALL_ITEM_INFORMATION:
-            memberController.viewAllItemInformation(adminController.getMembers());
+          case ADMIN_MENU:
+            adminController.viewAdminMenu(time);
             break;
           case EXIT:
             adminView.print("Goodbye!");

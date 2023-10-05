@@ -133,7 +133,7 @@ public class MemberController {
    *
    * @param members The list of members.
    */
-  public void viewAllItems(ArrayList<Member> members) {
+  public void viewAllItemsName(ArrayList<Member> members) {
     ArrayList<Item> items = new ArrayList<Item>();
     // Loop through all the members
     for (int i = 0; i < members.size(); i++) {
@@ -150,6 +150,21 @@ public class MemberController {
     adminView.printItemList(items);
   }
 
+  public void viweAllItems(ArrayList<Member> members) {
+    // Ask user which way to view the items?
+    int viewOption = Integer.parseInt(adminView.prompt("How do you want to view the items? \n 1. Only names \n 2. All information."));
+    
+    if(viewOption == 1) {
+      viewAllItemsName(members);
+    } else if(viewOption == 2) {
+      viewAllItemInformation(members);
+    } else {
+      adminView.print("Invalid input");
+    } {
+
+    }
+  }
+
   /**
    * Prompts the user to view all items of a specific category and displays all items of that
    * category.
@@ -159,7 +174,7 @@ public class MemberController {
   public void addContractPrompt(ArrayList<Member> members, int todaysDate) throws Exception {
     // Ask the user which item they want to rent
     adminView.print("Select an item to rent:");
-    viewAllItems(members);
+    viewAllItemsName(members);
 
     // Get a list of all the items
     ArrayList<Item> items = getAllItems(members);
