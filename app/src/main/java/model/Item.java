@@ -2,7 +2,13 @@ package model;
 
 import java.util.ArrayList;
 
+/**
+ * The Item class represents an item.
+ */
 public class Item {
+  /**
+   * The ItemCategory enum represents the category of an item.
+   */
   public enum ItemCategory {
     Tool,
     Vehicle,
@@ -21,6 +27,16 @@ public class Item {
   private ArrayList<Contract> contractList;
   private int creationDate;
 
+  /**
+   * Creates an item.
+   *
+   * @param category The category of the item.
+   * @param name The name of the item.
+   * @param description The description of the item.
+   * @param costPerDay The cost per day of the item.
+   * @param owner The member that owns the item.
+   * @param creationDate The date when the item was created.
+   */
   public Item(ItemCategory category, String name, String description, int costPerDay, Member owner, int creationDate) {
     setCategory(category);
     setName(name);
@@ -37,57 +53,125 @@ public class Item {
 
   }
 
+  /**
+   * Returns the category of the item.
+   *
+   * @return The category of the item.
+   */
   public ItemCategory getCategory() {
     return this.category;
   }
 
+  /**
+   * Returns the name of the item.
+   *
+   * @return The name of the item.
+   */
   public String getName() {
     return this.name;
   }
 
+  /**
+   * Returns the description of the item.
+   *
+   * @return The description of the item.
+   */
   public String getDescription() {
     return this.description;
   }
 
+  /**
+   * Returns the cost per day of the item.
+   *
+   * @return The cost per day of the item.
+   */
   public int getCostPerDay() {
     return this.costPerDay;
   }
 
   // ^^ Is this needed....?
+  /**
+   * Returns the owner of the item.
+   *
+   * @return The owner of the item.
+   */
   public Member getOwner() {
     return this.owner;
   }
 
+  /**
+   * Returns true if the item is available, otherwise false.
+   *
+   * @return True if the item is available, otherwise false.
+   */
   public boolean getIsAvailable() {
     return this.isAvailable;
   }
 
+  /**
+   * Returns the list of contracts.
+   *
+   * @return The list of contracts.
+   */
   public ArrayList<Contract> getContractList() {
     // Return a copy of the list of contracts
     return new ArrayList<Contract>(this.contractList);
   }
 
+  /**
+   * Returns the date when the item was created.
+   *
+   * @return The date when the item was created.
+   */
   public int getCreationDate() {
     return this.creationDate;
   }
 
+  /**
+   * Sets the category of the item.
+   *
+   * @param category The category of the item.
+   */
   public void setCategory(ItemCategory category) {
     this.category = category;
   }
 
+  /**
+   * Sets the name of the item.
+   *
+   * @param name The name of the item.
+   */
   public void setName(String name) {
     this.name = name;
   }
 
+  /**
+   * Sets the description of the item.
+   *
+   * @param description The description of the item.
+   */
   public void setDescription(String description) {
     this.description = description;
   }
 
+  /**
+   * Sets the cost per day of the item.
+   *
+   * @param costPerDay The cost per day of the item.
+   */
   public void setCostPerDay(int costPerDay) {
     this.costPerDay = costPerDay;
   }
 
-  // Check if the borrowing member has enough credits to rent the item for the specified number of days
+  /**
+   * Checks if the borrower has enough credits to rent the item for the specified number of days.
+   *
+   * @param borrower The borrower.
+   * @param days The number of days.
+   * @return True if the borrower has enough credits, otherwise false.
+   *
+   * @throws Exception If the number of days is negative or 0.
+   */
   private boolean checkCredits(Member borrower, int days) throws Exception {
     checkValidDays(days);
 
@@ -95,6 +179,13 @@ public class Item {
     return borrower.getCredits() >= this.costPerDay * days;
   }
 
+  /**
+   * Checks if the number of days is valid.
+   *
+   * @param days The number of days.
+   *
+   * @throws Exception If the number of days is negative or 0.
+   */
   private void checkValidDays(int days) throws Exception {
     // Check if days is negative or 0
     if (days <= 0) {
@@ -103,6 +194,16 @@ public class Item {
     }
   }
 
+  /**
+   * Adds a contract.
+   *
+   * @param borrower The member that is borrowing the item.
+   * @param startDate The date when the contract starts.
+   * @param endDate The date when the contract ends.
+   *
+   * @throws Exception If the number of days is negative or 0, the item is not available, or the
+    * borrower does not have enough credits.
+   */
   public void addContract(Member borrower, int startDate, int endDate) throws Exception {
     // Count the number of days between the start and end date
     int days = endDate - startDate;

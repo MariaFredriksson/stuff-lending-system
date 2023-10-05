@@ -2,14 +2,19 @@ package view;
 
 import java.util.ArrayList;
 import java.util.Scanner;
-
 import model.Contract;
 import model.Item;
 import model.Member;
 
+/**
+ * The AdminView class is responsible for displaying the admin menu and getting input from the user.
+ */
 public class AdminView {
   
-  public void mainMenu () {
+  /**
+   * Displays the main menu.
+   */
+  public void mainMenu() {
     print("Please select an option:");
     print("1. Create a new member");
     print("2. Edit a member");
@@ -24,6 +29,9 @@ public class AdminView {
     print("Q. Exit");
   }
 
+  /**
+   * The MainMenuAction enum represents the actions that can be performed in the main menu.
+   */
   public enum MainMenuAction {
     NONE,
     CREATE_MEMBER,
@@ -39,6 +47,13 @@ public class AdminView {
     EXIT
   }
 
+  /**
+   * Returns the main menu action based on the user input.
+   *
+   * @param input The user input.
+   *
+   * @return The main menu action.
+   */
   public MainMenuAction getMainMenuAction(String input) {
     if (input.length() != 1) {
       return MainMenuAction.NONE;
@@ -72,21 +87,45 @@ public class AdminView {
     }
   }
 
+  /**
+   * Reads a line from the console.
+   *
+   * @return The line that was read.
+   */
   public String readLine() {
     Scanner scanner = new Scanner(System.in);
     return scanner.nextLine();
   }
 
+  /**
+   * Prints a string to the console.
+   *
+   * @param text The string to print.
+   */
   public void print(String text) {
     System.out.println(text);
   }
 
+  /**
+   * Prints a string to the console without a new line.
+   *
+   * @param prompt The string to print.
+   *
+   * @return The string that was printed.
+   */
   public String prompt(String prompt) {
     print(prompt);
     return readLine();
   }
 
-  public int editMemberPrompt(ArrayList <Member> memberList) {
+  /**
+   * Prompts the user to edit a member.
+   *
+   * @param memberList The list of members.
+   *
+   * @return The index of the member to edit.
+   */
+  public int editMemberPrompt(ArrayList<Member> memberList) {
     print("Edit member");
     print("Select a member to edit:");
     printMemberList(memberList);
@@ -94,6 +133,13 @@ public class AdminView {
     return memberIndex;
   }
 
+  /**
+   * Prompts the user to delete a member.
+   *
+   * @param memberList The list of members.
+   *
+   * @return The index of the member to delete.
+   */
   public int deleteMemberPrompt(ArrayList<Member> memberList) {
     print("Delete member");
     print("Select member to delete:");
@@ -102,12 +148,22 @@ public class AdminView {
     return memberIndex;
   }
 
+  /**
+   * Prints the list of members.
+   *
+   * @param memberList The list of members.
+   */
   public void printMemberList(ArrayList<Member> memberList) {
     for (int i = 0; i < memberList.size(); i++) {
       print(i + 1 + ". " + memberList.get(i).getName());
     }
   }
 
+  /**
+   * Prompts the user to view all members in a simple way.
+   *
+   * @param memberList The list of members.
+   */
   public void printMemberListSimple(ArrayList<Member> memberList) {
     for (int i = 0; i < memberList.size(); i++) {
       print(i + 1 + ". " + memberList.get(i).getName());
@@ -118,6 +174,11 @@ public class AdminView {
   }
 
   // ^^ Can this method be this smart? (In a view)
+  /**
+   * Prompts the user to view all members in a verbose way.
+   *
+   * @param memberList The list of members.
+   */
   public void printMemberListVerbose(ArrayList<Member> memberList) {
     // Loop through all the members and print their name, email, information about all owned items (including contracts)
     for (int i = 0; i < memberList.size(); i++) {
@@ -129,7 +190,7 @@ public class AdminView {
       print(" Email: " + memberList.get(i).getEmail());
 
       // Get the list of items from the member
-      ArrayList <Item> items = member.getOwnedItems();
+      ArrayList<Item> items = member.getOwnedItems();
 
       // Loop through all the items and print their name, information about all contracts
       for (int j = 0; j < items.size(); j++) {
@@ -143,7 +204,7 @@ public class AdminView {
         print("   Cost per day: " + String.valueOf(item.getCostPerDay()));
 
         // Get the list of contracts from the item
-        ArrayList <Contract> contracts = item.getContractList();
+        ArrayList<Contract> contracts = item.getContractList();
 
         // Print the contracts (if there are any)
         if (contracts.size() > 0) {
@@ -163,6 +224,13 @@ public class AdminView {
     }
   }
 
+  /**
+   * Prompts the user to add an item.
+   *
+   * @param memberList The list of members.
+   *
+   * @return The index of the member to add the item to.
+   */
   public int addItemPrompt(ArrayList<Member> memberList) {
     print("Add item");
     print("Select a member to add the item to:");
@@ -171,7 +239,14 @@ public class AdminView {
     return memberIndex;
   }
 
-  public int editItemSelectMemberPrompt(ArrayList <Member> memberList) {
+  /**
+   * Prompts the user to edit an item.
+   *
+   * @param memberList The list of members.
+   *
+   * @return The index of the member to edit the item of.
+   */
+  public int editItemSelectMemberPrompt(ArrayList<Member> memberList) {
     print("Edit item");
     print("Select the member that owns the item you want to edit:");
     printMemberList(memberList);
@@ -179,14 +254,28 @@ public class AdminView {
     return memberIndex;
   }
 
-  public int editItemSelectItemPrompt(ArrayList <Item> itemList) {
+  /**
+   * Prompts the user to edit an item.
+   *
+   * @param itemList The list of items.
+   *
+   * @return The index of the item to edit.
+   */
+  public int editItemSelectItemPrompt(ArrayList<Item> itemList) {
     print("Select the item you want to edit:");
     printItemList(itemList);
     int itemIndex = Integer.parseInt(readLine()) - 1;
     return itemIndex;
   }
 
-  public int deleteItemSelectMemberPrompt(ArrayList <Member> memberList) {
+  /**
+   * Prompts the user to delete an item.
+   *
+   * @param memberList The list of members.
+   *
+   * @return The index of the member to delete the item of.
+   */
+  public int deleteItemSelectMemberPrompt(ArrayList<Member> memberList) {
     print("Delete item");
     print("Select the member that owns the item you want to delete:");
     printMemberList(memberList);
@@ -194,14 +283,26 @@ public class AdminView {
     return memberIndex;
   }
 
-  public int deleteItemSelectItemPrompt(ArrayList <Item> itemList) {
+  /**
+   * Prompts the user to delete an item.
+   *
+   * @param itemList The list of items.
+   *
+   * @return The index of the item to delete.
+   */
+  public int deleteItemSelectItemPrompt(ArrayList<Item> itemList) {
     print("Select the item you want to delete:");
     printItemList(itemList);
     int itemIndex = Integer.parseInt(readLine()) - 1;
     return itemIndex;
   }
 
-  public void printItemList (ArrayList<Item> itemList) {
+  /**
+   * Prints the item list.
+   *
+   * @param itemList The list of items.
+   */
+  public void printItemList(ArrayList<Item> itemList) {
     for (int i = 0; i < itemList.size(); i++) {
       print(i + 1 + ". " + itemList.get(i).getName());
     }
