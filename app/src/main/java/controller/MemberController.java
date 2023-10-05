@@ -165,7 +165,6 @@ public class MemberController {
     }
   }
 
-  // ! Vad tror du om detta Madde? Går och tar en macka så länge :)
   public void viewAllItemInformation (ArrayList <Member> members) {
     // Get all the items from all the members
     ArrayList <Item> items = getAllItems(members);
