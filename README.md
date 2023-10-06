@@ -11,7 +11,7 @@ The Stuff Lending System is a Java application designed to manage the lending an
 3. [How to Use the Application](#how-to-use-the-application)
 4. [Application Behavior](#application-behavior)
 5. [Testing](#testing)
-6. [Contributing](#contributing)
+6. [Authors](#authors)
 7. [License](#license)
 
 ## Application Overview
