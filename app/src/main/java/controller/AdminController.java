@@ -119,6 +119,12 @@ public class AdminController {
   }
 
   // ^^ Is it okay to get another controller as an input argument?
+  /**
+   * Prompts the user to view the admin menu and performs the selected action.
+   *
+   * @param time The time object.
+   * @param memberController The member controller.
+   */
   public void viewAdminMenu(Time time, MemberController memberController) {
     // Ask what the user wants to do
     int action = Integer.parseInt(adminView.prompt("What do you want to do?\n1. Increase day count with one"));
@@ -127,6 +133,12 @@ public class AdminController {
     }
   }
 
+  /**
+   * Increases the day count by one and checks for expired contracts.
+   *
+   * @param time The time object.
+   * @param memberController The member controller.
+   */
   public void increaseDayCount(Time time, MemberController memberController) {
     time.advanceDayCounter();
 

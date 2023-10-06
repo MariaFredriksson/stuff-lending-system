@@ -139,19 +139,24 @@ public class MemberController {
     adminView.printItemList(items);
   }
 
+  /**
+   * Prompts the user to view all items and displays all items.
+   *
+   * @param members The list of members.
+   */
   public void viewAllItems(ArrayList<Member> members) {
     // Ask user which way to view the items?
-    int viewOption = Integer.parseInt(adminView.prompt("How do you want to view the items? \n 1. Only names \n 2. All information."));
+    int viewOption 
+        = Integer.parseInt(
+        adminView.prompt("How do you want to view the items? \n 1. Only names \n 2. All information."));
     
-    if(viewOption == 1) {
+    if (viewOption == 1) {
       viewAllItemsName(members);
-    } else if(viewOption == 2) {
+    } else if (viewOption == 2) {
       viewAllItemInformation(members);
     } else {
       adminView.print("Invalid input");
-    } {
-
-    }
+    } 
   }
 
   /**
@@ -221,8 +226,8 @@ public class MemberController {
       // Get the item from the list of items
       Item item = items.get(i);
 
-      // Get the list of contracts from the item
-      ArrayList<Contract> contracts = item.getContractList();
+      // // Get the list of contracts from the item
+      // ArrayList<Contract> contracts = item.getContractList();
 
       // Print the name, category, description, cost per day, owner, and contracts
       adminView.print(i + 1 + ". Name: " + item.getName());
@@ -230,6 +235,9 @@ public class MemberController {
       adminView.print("Description: " + item.getDescription());
       adminView.print("Cost per day: " + item.getCostPerDay());
       adminView.print("Owner: " + item.getOwner().getName());
+
+      // Get the list of contracts from the item
+      ArrayList<Contract> contracts = item.getContractList();
 
       // Print the contracts, if there are any
       if (contracts.size() > 0) {
