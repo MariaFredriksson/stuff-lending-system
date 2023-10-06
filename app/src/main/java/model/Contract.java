@@ -1,5 +1,7 @@
 package model;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
+
 /**
  * The Contract class represents a contract between two members.
  */
@@ -36,6 +38,8 @@ public class Contract {
    *
    * @return The item that is being borrowed.
    */
+
+  @SuppressFBWarnings(value = "EI_EXPOSE_REP", justification = "This is a getter method.")
   public Item getItem() {
     return this.item;
   }
@@ -45,6 +49,7 @@ public class Contract {
    *
    * @return The member that is lending the item.
    */
+  @SuppressFBWarnings(value = "EI_EXPOSE_REP", justification = "This is a getter method.")
   public Member getLender() {
     return this.lender;
   }
@@ -54,6 +59,7 @@ public class Contract {
    *
    * @return The member that is borrowing the item.
    */
+  @SuppressFBWarnings(value = "EI_EXPOSE_REP", justification = "This is a getter method.")
   public Member getBorrower() {
     return this.borrower;
   }

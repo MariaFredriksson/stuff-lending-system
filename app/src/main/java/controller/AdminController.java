@@ -1,5 +1,6 @@
 package controller;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.util.ArrayList;
 import model.AdminModel;
 import model.Contract;
@@ -27,6 +28,7 @@ public class AdminController {
     adminView = new AdminView();
   }
 
+  @SuppressFBWarnings(value = "EI_EXPOSE_REP", justification = "This is a getter method.")
   public AdminModel getAdminModel() {
     return adminModel;
   }

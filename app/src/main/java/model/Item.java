@@ -1,5 +1,6 @@
 package model;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.util.ArrayList;
 
 /**
@@ -95,6 +96,7 @@ public class Item {
    *
    * @return The owner of the item.
    */
+  @SuppressFBWarnings(value = "EI_EXPOSE_REP", justification = "This is a getter method.")
   public Member getOwner() {
     return this.owner;
   }
