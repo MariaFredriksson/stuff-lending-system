@@ -46,34 +46,43 @@ public class AdminController {
    * @param todaysDate The current date for member creation.
    */
   public void createMemberPrompt(int todaysDate) {
-    adminView.print("Create new member");
-    String name = adminView.prompt("Enter name:");
-    String email = adminView.prompt("Enter email:");
-    String mobileNumber = adminView.prompt("Enter mobile number:");
-    adminModel.createMember(name, email, mobileNumber, todaysDate);
-    adminView.print("Member created!");
+    try {
+      adminView.print("Create new member");
+      String name = adminView.prompt("Enter name:");
+      String email = adminView.prompt("Enter email:");
+      String mobileNumber = adminView.prompt("Enter mobile number:");
+      adminModel.createMember(name, email, mobileNumber, todaysDate);
+      adminView.print("Member created!");
+    } catch (Exception e) {
+      adminView.print(e.getMessage());
+    }
   }
 
   /**
    * Prompts the user to edit a member and edits the member.
    */
   public void editMemberPrompt() {
-    ArrayList<Member> memberList = getMembers();
-
-    // Ask the user which member to edit
-    int memberIndex = adminView.editMemberPrompt(memberList);
-
-    // Get the member from the list of members
-    Member member = memberList.get(memberIndex - 1);
-
-    // Ask the user for the new name, email and mobile number
-    String newName = adminView.prompt("Enter name:");
-    String newEmail = adminView.prompt("Enter email:");
-    String newMobileNumber = adminView.prompt("Enter mobile number:");
-
-    adminModel.editMember(member, newName, newEmail, newMobileNumber);
-
-    adminView.print("Member edited!");
+    try {
+      ArrayList<Member> memberList = getMembers();
+  
+      // Ask the user which member to edit
+      int memberIndex = adminView.editMemberPrompt(memberList);
+  
+      // Get the member from the list of members
+      Member member = memberList.get(memberIndex - 1);
+  
+      // Ask the user for the new name, email and mobile number
+      String newName = adminView.prompt("Enter name:");
+      String newEmail = adminView.prompt("Enter email:");
+      String newMobileNumber = adminView.prompt("Enter mobile number:");
+  
+      adminModel.editMember(member, newName, newEmail, newMobileNumber);
+  
+      adminView.print("Member edited!");
+      
+    } catch (Exception e) {
+      adminView.print(e.getMessage());
+    }
   }
 
   /**
@@ -148,4 +157,3 @@ public class AdminController {
     });
   }
 }
-

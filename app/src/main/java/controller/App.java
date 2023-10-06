@@ -96,18 +96,23 @@ public class App {
       Member jane = adminModel.createMember("Jane Doe", "jane.doe@example", "0701234569", time.getTodaysDate());
 
       // Add an item to the member jane
-      jane.addItem(ItemCategory.Tool, "Hammer", "A tool for hammering", 10, time.getTodaysDate());
+      jane.addItem(ItemCategory.Tool, "Hammer", "A tool for hammering", 50, time.getTodaysDate());
 
+      jane.addItem(ItemCategory.Toy, "Ball", "A ball for playing", 10, time.getTodaysDate());
 
+      jane.changeCredits(300);
+
+      // Add a new member to the members list
       Member lasse = adminModel.createMember("Lasse", "lasse.doe@mail.com", "1234567896", time.getTodaysDate());
 
-      // Add an item to the member lasse
-      lasse.addItem(ItemCategory.Tool, "Screwdriver", "A tool for screwing", 12, time.getTodaysDate());
+      lasse.changeCredits(100);
 
-      // Add a contract where Jane Doe borrows Lasse's screwdriver
-      lasse.getOwnedItems().get(0).addContract(jane, time.getTodaysDate(), time.getTodaysDate() + 7);
+      // Add a new member to the members list
+      Member alex = adminModel.createMember("Alex Doe", "alex.doe@example", "0701234575", time.getTodaysDate());
 
-      // Add a contract where Lasse borrows Jane Doe's hammer
-      jane.getOwnedItems().get(0).addContract(lasse, time.getTodaysDate(), time.getTodaysDate() + 5);
+      alex.changeCredits(100);
+
+      // Alex wants to borrow janes boll for 3 days (today included)
+      jane.getOwnedItems().get(1).addContract(alex, time.getTodaysDate(), time.getTodaysDate() + 2);
   }
 }

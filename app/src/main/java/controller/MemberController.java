@@ -161,43 +161,48 @@ public class MemberController {
    * @param members The list of members.
    */
   public void addContractPrompt(ArrayList<Member> members, int todaysDate) throws Exception {
-    // Ask the user which item they want to rent
-    adminView.print("Select an item to rent:");
-    viewAllItemsName(members);
-
-    // Get a list of all the items
-    ArrayList<Item> items = getAllItems(members);
-
-    int itemIndex = Integer.parseInt(adminView.readLine()) - 1;
-
-    // Get the item from the list of items
-    Item item = items.get(itemIndex);
-
-    // Check that the item is available
-    if (item.getIsAvailable()) {
-      // Ask the user which member they are
-      adminView.print("Who are you?");
-      adminView.printMemberList(members);
-
-      int memberIndex = Integer.parseInt(adminView.readLine()) - 1;
-
-      // Get the member from the list of members
-      Member borrowingMember = members.get(memberIndex);
-
-      // Ask the user for the number of days they want to rent the item
-      int numberOfDays = Integer.parseInt(adminView.prompt("Enter number of days to borrow the item:"));
-
-      // Calculate the end date
-      int endDate = todaysDate + numberOfDays;
-
-      // Add the contract
-      item.addContract(borrowingMember, todaysDate, endDate);
-
-      // Print a success message
-      adminView.print("Contract added!");
-    } else {
-      // Print an error message
-      adminView.print("Item is not available");
+    try {
+      // Ask the user which item they want to rent
+      adminView.print("Select an item to rent:");
+      viewAllItemsName(members);
+  
+      // Get a list of all the items
+      ArrayList<Item> items = getAllItems(members);
+  
+      int itemIndex = Integer.parseInt(adminView.readLine()) - 1;
+  
+      // Get the item from the list of items
+      Item item = items.get(itemIndex);
+  
+      // Check that the item is available
+      if (item.getIsAvailable()) {
+        // Ask the user which member they are
+        adminView.print("Who are you?");
+        adminView.printMemberList(members);
+  
+        int memberIndex = Integer.parseInt(adminView.readLine()) - 1;
+  
+        // Get the member from the list of members
+        Member borrowingMember = members.get(memberIndex);
+  
+        // Ask the user for the number of days they want to rent the item
+        int numberOfDays = Integer.parseInt(adminView.prompt("Enter number of days to borrow the item:"));
+  
+        // Calculate the end date
+        int endDate = todaysDate + numberOfDays;
+  
+        // Add the contract
+        item.addContract(borrowingMember, todaysDate, endDate);
+  
+        // Print a success message
+        adminView.print("Contract added!");
+      } else {
+        // Print an error message
+        adminView.print("Item is not available");
+      }
+      
+    } catch (Exception e) {
+      adminView.print(e.getMessage());
     }
   }
 

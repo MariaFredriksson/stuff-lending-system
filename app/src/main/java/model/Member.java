@@ -129,7 +129,6 @@ public class Member {
     } else {
       throw new IllegalArgumentException("Invalid email");
     }
-
   }
 
   /**
