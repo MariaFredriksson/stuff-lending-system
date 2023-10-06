@@ -3,6 +3,7 @@ Document the results of your final system test below. You find instructions on t
 
 General note: The requirements did not ask to view the member ID and therefore the application did not view member ID. Same with  the phone number, you have to enter a 10 didgit mobil number to get validated.
 
+## 5.1 Member Data
 | Case | Result             | Note |
 |------|---------------------------|------------------|
 | 5.1 | OK  |    |  
@@ -11,6 +12,7 @@ General note: The requirements did not ask to view the member ID and therefore t
 | 5.1.3 | OK |    |
 | 5.1.4 | NOT OK | The contract starts on day 0 and ends on day 2   |
 
+## 1.1 Create Member
 | Case | Result             | Note |
 |------|---------------------------|------------------|
 | 1.1 | OK |    |
@@ -18,7 +20,7 @@ General note: The requirements did not ask to view the member ID and therefore t
 | 1.1.2 | NOT OK |    |
 | 1.1.3 | OK  |    |
 
-
+## 1.2 Create Member - Duplicate Email and Phone
 | Case | Result             | Note |
 |------|---------------------------|------------------|
 | 1.2 | OK |    |
@@ -32,6 +34,7 @@ General note: The requirements did not ask to view the member ID and therefore t
 | 1.2.8 | NOT OK |    |
 | 1.2.9 | OK |    |
 
+## 1.3 Delete Member
 | Case | Result             | Note |
 |------|---------------------------|------------------|
 | 1.3 |OK  |    |
@@ -43,6 +46,7 @@ General note: The requirements did not ask to view the member ID and therefore t
 | 1.3.6 | OK |    |
 | 1.3.7 | OK |    |
 
+## 2.1 Create item
 | Case | Result             | Note |
 |------|---------------------------|------------------|
 | 2.1 | OK |    |
@@ -50,6 +54,7 @@ General note: The requirements did not ask to view the member ID and therefore t
 | 2.1.2 | OK |    |
 | 2.1.3 | OK |    |
 
+## 2.2 Delete item
 | Case | Result             | Note |
 |------|---------------------------|------------------|
 | 2.2 | OK |    |
@@ -57,6 +62,7 @@ General note: The requirements did not ask to view the member ID and therefore t
 | 2.2.2 | OK |    |
 | 2.2.3 | OK |    |
 
+## 2.3 Delete item
 | Case | Result             | Note |
 |------|---------------------------|------------------|
 | 2.3 | OK |    |
@@ -65,28 +71,28 @@ General note: The requirements did not ask to view the member ID and therefore t
 | 2.3.3 | OK |    |
 | 2.3.4 | NOT OK | The contract was cancelled, but the item is still lent out and the borrower has to pay.     |
 
-
+## 3.1 Create Contract
 | Case | Result             | Note |
 |------|---------------------------|------------------|
 | 3.1 | OK | Day count was incrased to day 3 and then the item was borrowed for 3 days.   |
 | 3.1.1 | OK |    |
 | 3.1.2 | OK |    |
 
-
+## 3.2 Create Contract - not enough funds
 | Case | Result             | Note |
 |------|---------------------------|------------------|
 | 3.2 | OK |    |
 | 3.2.1 | OK |    |
 | 3.2.2 | OK |    |
 
-
+## 3.3 Create Contract - conflicting time
 | Case | Result             | Note |
 |------|---------------------------|------------------|
 | 3.3 | OK |    |
 | 3.3.1 | OK | Tried to create a contract from today (since that is our default).   |
 | 3.3.2 | OK |    |
 
-
+## 4.1 Advance time
 | Case | Result             | Note |
 |------|---------------------------|------------------|
 | 4.1 | OK |    |
