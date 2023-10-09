@@ -1,14 +1,19 @@
 package model.persistence;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import model.AdminModel;
 import model.Item.ItemCategory;
 import model.Member;
 import model.Time;
 
+/**
+ * The DefaultData class is responsible for loading default data into the program.
+ */
 public class DefaultData implements PersistenceInterface {
   private AdminModel adminModel;
   private Time time;
 
+  @SuppressFBWarnings(value = "EI_EXPOSE_REP", justification = "Its ok")
   public DefaultData(AdminModel adminModel, Time time) {
     this.adminModel = adminModel;
     this.time = time;
