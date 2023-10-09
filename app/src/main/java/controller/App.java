@@ -19,7 +19,7 @@ public class App {
    */
   public static void main(String[] args) {
     try {
-
+      // ^^ Open a scanner here, send it to adminView, and close it when the program exits?
       Time time = new Time();
       AdminController adminController = new AdminController();
       AdminModel adminModel = adminController.getAdminModel();

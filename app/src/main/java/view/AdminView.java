@@ -193,6 +193,7 @@ public class AdminView {
       print(i + 1 + ". Name: " + memberList.get(i).getName());
       print(" Email: " + memberList.get(i).getEmail());
 
+      // ^^ Break out this into a method?
       // Get the list of items from the member
       ArrayList<Item> items = member.getOwnedItems();
 
