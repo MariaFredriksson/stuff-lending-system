@@ -206,7 +206,7 @@ public class AdminView {
   }
 
   private void printItemInfo(Item item) {
-        // Print the name, category, description, cost of the item
+    // Print the name, category, description, cost of the item
     print("   Item: " + item.getName());
     print("   Category: " + item.getCategory().toString());
     print("   Description: " + item.getDescription());
