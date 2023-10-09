@@ -177,7 +177,6 @@ public class AdminView {
     }
   }
 
-  // ^^ Can this method be this smart? (In a view)
   /**
    * Prompts the user to view all members in a verbose way.
    *
@@ -193,7 +192,6 @@ public class AdminView {
       print(i + 1 + ". Name: " + memberList.get(i).getName());
       print(" Email: " + memberList.get(i).getEmail());
 
-      // ^^ Break out this into a method?
       // Get the list of items from the member
       ArrayList<Item> items = member.getOwnedItems();
 
@@ -202,32 +200,36 @@ public class AdminView {
         // Get the item from the list of items
         Item item = items.get(j);
 
-        // Print the name, category, description, cost of the item
-        print("   Item: " + item.getName());
-        print("   Category: " + item.getCategory().toString());
-        print("   Description: " + item.getDescription());
-        print("   Cost per day: " + String.valueOf(item.getCostPerDay()));
-
-        // Get the list of contracts from the item
-        ArrayList<Contract> contracts = item.getContractList();
-
-        // Print the contracts (if there are any)
-        if (contracts.size() > 0) {
-          // Loop through all the contracts and print their information
-          for (int k = 0; k < contracts.size(); k++) {
-            // Get the contract from the list of contracts
-            Contract contract = contracts.get(k);
-  
-            // Print the information about the contract
-            print("     Contract time period: " 
-                + String.valueOf(contract.getStartDate()) 
-                + " - " + String.valueOf(contract.getEndDate()));
-            print("     Borrower: " + contract.getBorrower().getName());
-          }
-        } else {
-          print("No contracts");
-        }
+        printItemInfo(item);
       }
+    }
+  }
+
+  private void printItemInfo(Item item) {
+        // Print the name, category, description, cost of the item
+    print("   Item: " + item.getName());
+    print("   Category: " + item.getCategory().toString());
+    print("   Description: " + item.getDescription());
+    print("   Cost per day: " + String.valueOf(item.getCostPerDay()));
+
+    // Get the list of contracts from the item
+    ArrayList<Contract> contracts = item.getContractList();
+
+    // Print the contracts (if there are any)
+    if (contracts.size() > 0) {
+      // Loop through all the contracts and print their information
+      for (int k = 0; k < contracts.size(); k++) {
+        // Get the contract from the list of contracts
+        Contract contract = contracts.get(k);
+
+        // Print the information about the contract
+        print("     Contract time period: " 
+            + String.valueOf(contract.getStartDate()) 
+            + " - " + String.valueOf(contract.getEndDate()));
+        print("     Borrower: " + contract.getBorrower().getName());
+      }
+    } else {
+      print("No contracts");
     }
   }
 
