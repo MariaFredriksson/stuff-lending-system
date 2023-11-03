@@ -82,10 +82,10 @@ public class MemberController {
     Item item = items.get(itemIndex);
 
     // Ask the user for the category, name, description and cost per day
-    String categoryString = adminView.prompt("Enter category:");
-    String name = adminView.prompt("Enter name:");
-    String description = adminView.prompt("Enter description:");
-    int costPerDay = Integer.parseInt(adminView.prompt("Enter cost per day:"));
+    String categoryString = adminView.promptForCategory();
+    String name = adminView.promptForName();
+    String description = adminView.promptForDescription();
+    int costPerDay = adminView.promptForCostPerDay();
 
     // Convert the category string to an enum
     ItemCategory category = ItemCategory.valueOf(categoryString);
@@ -94,7 +94,7 @@ public class MemberController {
     member.editItem(item, category, name, description, costPerDay);
 
     // Print a success message
-    adminView.print("Item edited!");
+    adminView.displayItemEditedSuccessfully();
   }
 
   /**
@@ -122,7 +122,7 @@ public class MemberController {
     member.deleteItem(item);
 
     // Print a success message
-    adminView.print("Item deleted!");
+    adminView.displayItemDeletedSuccessfully();
   }
 
   /**

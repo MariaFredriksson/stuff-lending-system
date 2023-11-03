@@ -204,6 +204,14 @@ public class AdminView {
     print("Item added successfully!");
   }
 
+  public void displayItemEditedSuccessfully() {
+    print("Item edited successfully!");
+  }
+
+  public void displayItemDeletedSuccessfully() {
+    print("Item deleted successfully!");
+  }
+
   /**
    * Prints the list of members.
    *
