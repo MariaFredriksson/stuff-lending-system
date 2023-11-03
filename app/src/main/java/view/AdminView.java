@@ -122,6 +122,10 @@ public class AdminView {
     return readLine();
   }
 
+  public void printInvalidInput() {
+    print("Invalid input");
+  }
+
   public void displayCreateMemberPrompt() {
     print("Create member");
   }
@@ -156,6 +160,10 @@ public class AdminView {
     int memberIndex = Integer.parseInt(readLine());
     return memberIndex;
   }
+  
+  public void displayMemberEditedSuccessfully() {
+    print("Member edited successfully!");
+  }
 
   /**
    * Prompts the user to delete a member.
@@ -180,6 +188,39 @@ public class AdminView {
   public void printMemberList(ArrayList<Member> memberList) {
     for (int i = 0; i < memberList.size(); i++) {
       print(i + 1 + ". " + memberList.get(i).getName());
+    }
+  }
+
+  public void printMemberListMenu() {
+    print("View members in:");
+    print("1. A simple way");
+    print("2. A verbose way");
+  }
+
+  public enum MemberListAction {
+    NONE,
+    SIMPLE,
+    VERBOSE
+  }
+
+  /**
+   * Returns the member list action based on the user input.
+   *
+   * @param input The user input.
+   *
+   * @return The member list action.
+   */
+  public MemberListAction getMemberListAction(String input) {
+    if (input.length() != 1) {
+      return MemberListAction.NONE;
+    }
+    switch (input) {
+      case "1":
+        return MemberListAction.SIMPLE;
+      case "2":
+        return MemberListAction.VERBOSE;
+      default:
+        return MemberListAction.NONE;
     }
   }
 

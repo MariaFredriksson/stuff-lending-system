@@ -8,6 +8,7 @@ import model.Item;
 import model.Member;
 import model.Time;
 import view.AdminView;
+import view.AdminView.MemberListAction;
 
 /**
  * The AdminController class is responsible for controlling interactions between the
@@ -77,13 +78,13 @@ public class AdminController {
       Member member = memberList.get(memberIndex - 1);
   
       // Ask the user for the new name, email and mobile number
-      String newName = adminView.prompt("Enter name:");
-      String newEmail = adminView.prompt("Enter email:");
-      String newMobileNumber = adminView.prompt("Enter mobile number:");
+      String newName = adminView.promptForName();
+      String newEmail = adminView.promptForEmail();
+      String newMobileNumber = adminView.promptForMobileNumber();
   
       adminModel.editMember(member, newName, newEmail, newMobileNumber);
   
-      adminView.print("Member edited!");
+      adminView.displayMemberEditedSuccessfully();
       
     } catch (Exception e) {
       adminView.print(e.getMessage());
@@ -111,15 +112,21 @@ public class AdminController {
   public void viewAllMembers() {
     ArrayList<Member> memberList = getMembers();
 
-    // Ask the user in which way they want to view the members
-    int viewOption = Integer.parseInt(adminView.prompt("View members in:\n1. A simple way\n2. A verbose way"));
+    adminView.printMemberListMenu();
 
-    if (viewOption == 1) {
-      // Print the list of members
-      adminView.printMemberListSimple(memberList);
-    } else if (viewOption == 2) {
-      // Print the list of members
-      adminView.printMemberListVerbose(memberList);
+    MemberListAction action = adminView.getMemberListAction(adminView.readLine());
+
+    switch (action) {
+      case SIMPLE:
+        adminView.printMemberListSimple(memberList);
+        break;
+      case VERBOSE:
+        adminView.printMemberListVerbose(memberList);
+        break;
+      default:
+        // ^^ Ska vi ha denna default?
+        adminView.printInvalidInput();
+        break;
     }
   }
 
