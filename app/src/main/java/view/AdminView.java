@@ -6,6 +6,7 @@ import java.util.Scanner;
 import model.Contract;
 import model.Item;
 import model.Member;
+import model.Item.ItemCategory;
 
 /**
  * The AdminView class is responsible for displaying the admin menu and getting input from the user.
@@ -178,6 +179,29 @@ public class AdminView {
     printMemberList(memberList);
     int memberIndex = Integer.parseInt(readLine());
     return memberIndex;
+  }
+
+  public void displayCategoryOptions(ItemCategory[] categories) {
+    print("Category options:");
+    for (int i = 0; i < categories.length; i++) {
+      print(categories[i].toString());
+    }
+  }
+
+  public String promptForCategory() {
+    return prompt("Enter category:");
+  }
+
+  public String promptForDescription() {
+    return prompt("Enter description:");
+  }
+
+  public int promptForCostPerDay() {
+    return Integer.parseInt(prompt("Enter cost per day:"));
+  }
+
+  public void displayItemAddedSuccessfully() {
+    print("Item added successfully!");
   }
 
   /**
