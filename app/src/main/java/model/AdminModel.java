@@ -105,13 +105,27 @@ public class AdminModel {
   private String generateMemberId(int length) {
     String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
     Random random = new Random();
-    StringBuilder stringBuilder = new StringBuilder(length);
+    StringBuilder stringBuilder;
+    boolean isUniqueId;
 
-    for (int i = 0; i < length; i++) {
-      int randomIndex = random.nextInt(characters.length());
-      char randomChar = characters.charAt(randomIndex);
-      stringBuilder.append(randomChar);
-    }
+    do {
+      isUniqueId = true;
+      stringBuilder = new StringBuilder(length);
+
+      for (int i = 0; i < length; i++) {
+        int randomIndex = random.nextInt(characters.length());
+        char randomChar = characters.charAt(randomIndex);
+        stringBuilder.append(randomChar);
+      }
+  
+      // Check if the member ID is unique
+      for (Member member : members) {
+        if (member.getMemberId().equals(stringBuilder.toString())) {
+          isUniqueId = false;
+          break;
+        }
+      }
+    } while (!isUniqueId);
 
     return stringBuilder.toString();
   }
