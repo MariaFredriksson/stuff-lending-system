@@ -77,6 +77,23 @@ public class AdminModel {
   public void deleteMember(Member member) {
     members.remove(member);
   }
+
+  public void checkForExpiredContracts(Time time, ArrayList<Item> items) {
+    // Loop through all the items
+    items.forEach(item -> {
+      // Get all the contracts for the item
+      ArrayList<Contract> contracts = item.getContractList();
+
+      // Loop through all the contracts
+      contracts.forEach(contract -> {
+        // Check if the contract has expired and if the item is not set to available
+        if (contract.getEndDate() < time.getTodaysDate() && !item.getIsAvailable()) {
+          // Set the item to available
+          item.setIsAvailable(true);
+        }
+      });
+    });
+  }
   
   /**
    * Generates a random member ID.

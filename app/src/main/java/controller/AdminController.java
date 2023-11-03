@@ -3,7 +3,6 @@ package controller;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.util.ArrayList;
 import model.AdminModel;
-import model.Contract;
 import model.Item;
 import model.Member;
 import model.Time;
@@ -164,27 +163,9 @@ public class AdminController {
 
     adminView.printNewDate(time.getTodaysDate());
 
-    checkForExpiredContracts(time, memberController);
-  }
-
-  // ^^ Should this be here or in the member controller, or in a model?
-  private void checkForExpiredContracts(Time time, MemberController memberController) {
     // Get all items that exist in the program
     ArrayList<Item> items = memberController.getAllItems(getMembers());
 
-    // Loop through all the items
-    items.forEach(item -> {
-      // Get all the contracts for the item
-      ArrayList<Contract> contracts = item.getContractList();
-
-      // Loop through all the contracts
-      contracts.forEach(contract -> {
-        // Check if the contract has expired and if the item is not set to available
-        if (contract.getEndDate() < time.getTodaysDate() && !item.getIsAvailable()) {
-          // Set the item to available
-          item.setIsAvailable(true);
-        }
-      });
-    });
+    adminModel.checkForExpiredContracts(time, items);
   }
 }
