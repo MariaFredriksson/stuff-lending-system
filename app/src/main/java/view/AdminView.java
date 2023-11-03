@@ -15,6 +15,11 @@ public class AdminView {
   
   // ^^ Should we have everything about main menu in its own view maybe?
   // ^^ If so; how should we handle print(), prompt(), readLine() to make the code DRY? Interface...? Inherit...?
+
+  public void displayWelcomeMessage() {
+    print("Welcome to the Stuff Lending System!");
+  }
+
   /**
    * Displays the main menu.
    */
@@ -441,5 +446,9 @@ public class AdminView {
 
   public void printNewDate(int date) {
     print("The new date is: " + date);
+  }
+
+  public void displayGoodbyeMessage() {
+    print("Goodbye!");
   }
 }

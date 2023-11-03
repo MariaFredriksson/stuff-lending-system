@@ -31,7 +31,7 @@ public class App {
       defaultData.load();
 
       // Print a welcome message when the application first starts
-      adminView.print("Welcome to the Stuff Lending System!");
+      adminView.displayWelcomeMessage();
 
       // Set the result to something other than EXIT so the while-loop starts
       MainMenuAction result = MainMenuAction.NONE;
@@ -79,10 +79,10 @@ public class App {
             adminController.viewAdminMenu(time, memberController);
             break;
           case EXIT:
-            adminView.print("Goodbye!");
+            adminView.displayGoodbyeMessage();
             break;
           default:
-            adminView.print("Invalid input");
+            adminView.printInvalidInput();
             break;
         }
       }
