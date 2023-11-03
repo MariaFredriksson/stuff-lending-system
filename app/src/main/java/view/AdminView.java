@@ -377,4 +377,37 @@ public class AdminView {
       print(i + 1 + ". " + itemList.get(i).getName());
     }
   }
+
+  public void printAdminMenu() {
+    print("What do you want to do?");
+    print("1. Increase day count with one");
+  }
+
+  public enum AdminMenuAction {
+    NONE,
+    INCREASE_DAY_COUNT
+  }
+
+  /**
+   * Returns the admin menu action based on the user input.
+   *
+   * @param input The user input.
+   *
+   * @return The admin menu action.
+   */
+  public AdminMenuAction getAdminMenuAction(String input) {
+    if (input.length() != 1) {
+      return AdminMenuAction.NONE;
+    }
+    switch (input) {
+      case "1":
+        return AdminMenuAction.INCREASE_DAY_COUNT;
+      default:
+        return AdminMenuAction.NONE;
+    }
+  }
+
+  public void printNewDate(int date) {
+    print("The new date is: " + date);
+  }
 }

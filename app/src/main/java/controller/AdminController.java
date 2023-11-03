@@ -8,6 +8,7 @@ import model.Item;
 import model.Member;
 import model.Time;
 import view.AdminView;
+import view.AdminView.AdminMenuAction;
 import view.AdminView.MemberListAction;
 
 /**
@@ -138,10 +139,17 @@ public class AdminController {
    * @param memberController The member controller.
    */
   public void viewAdminMenu(Time time, MemberController memberController) {
-    // Ask what the user wants to do
-    int action = Integer.parseInt(adminView.prompt("What do you want to do?\n1. Increase day count with one"));
-    if (action == 1) {
-      increaseDayCount(time, memberController);
+    adminView.printAdminMenu();
+
+    AdminMenuAction action = adminView.getAdminMenuAction(adminView.readLine());
+
+    switch (action) {
+      case INCREASE_DAY_COUNT:
+        increaseDayCount(time, memberController);
+        break;
+      default:
+        adminView.printInvalidInput();
+        break;
     }
   }
 
@@ -154,8 +162,7 @@ public class AdminController {
   public void increaseDayCount(Time time, MemberController memberController) {
     time.advanceDayCounter();
 
-    // Print the new date
-    adminView.print("The new date is: " + time.getTodaysDate());
+    adminView.printNewDate(time.getTodaysDate());
 
     checkForExpiredContracts(time, memberController);
   }
