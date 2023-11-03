@@ -49,12 +49,15 @@ public class AdminController {
    */
   public void createMemberPrompt(int todaysDate) {
     try {
-      adminView.print("Create new member");
-      String name = adminView.prompt("Enter name:");
-      String email = adminView.prompt("Enter email:");
-      String mobileNumber = adminView.prompt("Enter mobile number:");
+      adminView.displayCreateMemberPrompt();
+
+      String name = adminView.promptForName();
+      String email = adminView.promptForEmail();
+      String mobileNumber = adminView.promptForMobileNumber();
+
       adminModel.createMember(name, email, mobileNumber, todaysDate);
-      adminView.print("Member created!");
+      
+      adminView.displayMemberCreatedSuccessfully();
     } catch (Exception e) {
       adminView.print(e.getMessage());
     }

@@ -122,6 +122,26 @@ public class AdminView {
     return readLine();
   }
 
+  public void displayCreateMemberPrompt() {
+    print("Create member");
+  }
+
+  public String promptForName() {
+    return prompt("Enter name:");
+  }
+
+  public String promptForEmail() {
+    return prompt("Enter email:");
+  }
+
+  public String promptForMobileNumber() {
+    return prompt("Enter mobile number:");
+  }
+
+  public void displayMemberCreatedSuccessfully() {
+    print("Member created successfully!");
+  }
+
   /**
    * Prompts the user to edit a member.
    *
