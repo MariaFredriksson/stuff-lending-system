@@ -21,9 +21,9 @@ public class App {
     try {
       // ^^ Open a scanner here, send it to adminView, and close it when the program exits?
       Time time = new Time();
-      AdminController adminController = new AdminController();
-      AdminModel adminModel = adminController.getAdminModel();
       AdminView adminView = new AdminView();
+      AdminModel adminModel = new AdminModel();
+      AdminController adminController = new AdminController(adminModel);
       MemberController memberController = new MemberController();
 
       // Add some members, items, and contracts to start with
@@ -59,21 +59,21 @@ public class App {
             // Get a list of all the members that exist in this program 
             // (We can't create a new adminController anywhere else,
             // since it won't have the list of members (much like the Time class only should be created once))
-            ArrayList<Member> members =  adminController.getMembers();
+            ArrayList<Member> members =  adminModel.getMembers();
 
             memberController.addItemPrompt(members, time.getTodaysDate());
             break;
           case EDIT_ITEM:
-            memberController.editItemPrompt(adminController.getMembers());
+            memberController.editItemPrompt(adminModel.getMembers());
             break;
           case DELETE_ITEM:
-            memberController.deleteItemPrompt(adminController.getMembers());
+            memberController.deleteItemPrompt(adminModel.getMembers());
             break;
           case VIEW_ALL_ITEMS:
-            memberController.viewAllItems(adminController.getMembers());
+            memberController.viewAllItems(adminModel.getMembers());
             break;
           case ADD_CONTRACT:
-            memberController.addContractPrompt(adminController.getMembers(), time.getTodaysDate());
+            memberController.addContractPrompt(adminModel.getMembers(), time.getTodaysDate());
             break;
           case ADMIN_MENU:
             adminController.viewAdminMenu(time, memberController);

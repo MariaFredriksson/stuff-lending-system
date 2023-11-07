@@ -243,6 +243,7 @@ public class MemberController {
       Member member = members.get(i);
 
       // Get the list of items from the member
+      // This is already a copy of the list of items from the member model, so it is immutable
       ArrayList<Item> memberItems = member.getOwnedItems();
 
       // Loop through all the items

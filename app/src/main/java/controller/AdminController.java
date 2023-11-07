@@ -24,24 +24,15 @@ public class AdminController {
    * Constructor to initialize the AdminController with an empty member list and instances
    * of AdminModel and AdminView.
    */
-  public AdminController() {
-    adminModel = new AdminModel();
+  public AdminController(AdminModel adminModelToSet) {
+    adminModel = adminModelToSet;
     adminView = new AdminView();
   }
 
   @SuppressFBWarnings(value = "EI_EXPOSE_REP", justification = "This is a getter method.")
-  public AdminModel getAdminModel() {
-    return adminModel;
-  }
-
-  /**
-   * Returns the list of members.
-   *
-   * @return The list of members.
-   */
-  public ArrayList<Member> getMembers() {
-    return adminModel.getMembers();
-  }
+  // public AdminModel getAdminModel() {
+  //   return adminModel;
+  // }
 
   /**
    * Prompts the user to create a new member and adds the member to the list of members.
@@ -69,7 +60,7 @@ public class AdminController {
    */
   public void editMemberPrompt() {
     try {
-      ArrayList<Member> memberList = getMembers();
+      ArrayList<Member> memberList = adminModel.getMembers();
   
       // Ask the user which member to edit
       int memberIndex = adminView.editMemberPrompt(memberList);
@@ -95,7 +86,7 @@ public class AdminController {
    * Prompts the user to delete a member and deletes the member.
    */
   public void deleteMemberPrompt() {
-    ArrayList<Member> memberList = getMembers();
+    ArrayList<Member> memberList = adminModel.getMembers();
 
     // Ask the user which member to delete
     int memberIndex = adminView.deleteMemberPrompt(memberList);
@@ -110,7 +101,7 @@ public class AdminController {
    * Prompts the user to view all members and displays the members.
    */
   public void viewAllMembers() {
-    ArrayList<Member> memberList = getMembers();
+    ArrayList<Member> memberList = adminModel.getMembers();
 
     adminView.printMemberListMenu();
 
@@ -124,7 +115,6 @@ public class AdminController {
         adminView.printMemberListVerbose(memberList);
         break;
       default:
-        // ^^ Ska vi ha denna default?
         adminView.printInvalidInput();
         break;
     }
@@ -164,7 +154,7 @@ public class AdminController {
     adminView.printNewDate(time.getTodaysDate());
 
     // Get all items that exist in the program
-    ArrayList<Item> items = memberController.getAllItems(getMembers());
+    ArrayList<Item> items = memberController.getAllItems(adminModel.getMembers());
 
     adminModel.checkForExpiredContracts(time, items);
   }
