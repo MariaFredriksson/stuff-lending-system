@@ -448,6 +448,26 @@ public class AdminView {
     }
   }
 
+  public void printSelectItemToRent() {
+    print("Select the item you want to rent:");
+  }
+
+  public void printWhoAreYou() {
+    print("Who are you?");
+  }
+
+  public int promptForDaysToRent() {
+    return Integer.parseInt(prompt("How many days do you want to rent the item for?"));
+  }
+
+  public void printContractAddedSuccessfully() {
+    print("Contract added successfully!");
+  }
+
+  public void printItemNotAvailable() {
+    print("Item is not available");
+  }
+
   public void printAdminMenu() {
     print("What do you want to do?");
     print("1. Increase day count with one");

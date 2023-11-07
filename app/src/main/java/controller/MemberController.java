@@ -155,7 +155,7 @@ public class MemberController {
         viewAllItemInformation(members);
         break;
       default:
-        adminView.print("Invalid input");
+        adminView.printInvalidInput();
     }
   }
 
@@ -168,7 +168,7 @@ public class MemberController {
   public void addContractPrompt(ArrayList<Member> members, int todaysDate) throws Exception {
     try {
       // Ask the user which item they want to rent
-      adminView.print("Select an item to rent:");
+      adminView.printSelectItemToRent();
       viewAllItemsName(members);
   
       // Get a list of all the items
@@ -182,7 +182,7 @@ public class MemberController {
       // Check that the item is available
       if (item.getIsAvailable()) {
         // Ask the user which member they are
-        adminView.print("Who are you?");
+        adminView.printWhoAreYou();
         adminView.printMemberList(members);
   
         int memberIndex = Integer.parseInt(adminView.readLine()) - 1;
@@ -191,7 +191,7 @@ public class MemberController {
         Member borrowingMember = members.get(memberIndex);
   
         // Ask the user for the number of days they want to rent the item
-        int numberOfDays = Integer.parseInt(adminView.prompt("Enter number of days to borrow the item:"));
+        int numberOfDays = adminView.promptForDaysToRent();
   
         // Calculate the end date
         int endDate = todaysDate + numberOfDays;
@@ -200,10 +200,10 @@ public class MemberController {
         item.addContract(borrowingMember, todaysDate, endDate);
   
         // Print a success message
-        adminView.print("Contract added!");
+        adminView.printContractAddedSuccessfully();
       } else {
         // Print an error message
-        adminView.print("Item is not available");
+        adminView.printItemNotAvailable();
       }
       
     } catch (Exception e) {
