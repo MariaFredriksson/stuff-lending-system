@@ -364,6 +364,36 @@ public class AdminView {
     }
   }
 
+  public void printAllItemInformation (Item item, int i) {
+    // Print the name, category, description, cost per day, owner, and contracts
+    print(i + 1 + ". Name: " + item.getName());
+    print("Category: " + item.getCategory());
+    print("Description: " + item.getDescription());
+    print("Cost per day: " + item.getCostPerDay());
+    print("Owner: " + item.getOwner().getName());
+
+    // Get the list of contracts from the item
+    ArrayList<Contract> contracts = item.getContractList();
+
+    // Print the contracts, if there are any
+    if (contracts.size() > 0) {
+      print("Contracts: ");
+
+      // Loop through all the contracts
+      for (int j = 0; j < contracts.size(); j++) {
+        // Get the contract from the list of contracts
+        Contract contract = contracts.get(j);
+
+        // Print the contract
+        print(" Borrowing member: " + contract.getBorrower().getName());
+        print(" Start date: " + contract.getStartDate());
+        print(" End date: " + contract.getEndDate());
+      }
+    } else {
+      print("No contracts");
+    }
+  }
+
   /**
    * Prompts the user to add an item.
    *

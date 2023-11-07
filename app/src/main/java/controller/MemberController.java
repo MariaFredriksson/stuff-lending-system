@@ -1,7 +1,6 @@
 package controller;
 
 import java.util.ArrayList;
-import model.Contract;
 import model.Item;
 import model.Item.ItemCategory;
 import model.Member;
@@ -226,36 +225,7 @@ public class MemberController {
       // Get the item from the list of items
       Item item = items.get(i);
 
-      // // Get the list of contracts from the item
-      // ArrayList<Contract> contracts = item.getContractList();
-
-      // Print the name, category, description, cost per day, owner, and contracts
-      adminView.print(i + 1 + ". Name: " + item.getName());
-      adminView.print("Category: " + item.getCategory());
-      adminView.print("Description: " + item.getDescription());
-      adminView.print("Cost per day: " + item.getCostPerDay());
-      adminView.print("Owner: " + item.getOwner().getName());
-
-      // Get the list of contracts from the item
-      ArrayList<Contract> contracts = item.getContractList();
-
-      // Print the contracts, if there are any
-      if (contracts.size() > 0) {
-        adminView.print("Contracts: ");
-
-        // Loop through all the contracts
-        for (int j = 0; j < contracts.size(); j++) {
-          // Get the contract from the list of contracts
-          Contract contract = contracts.get(j);
-
-          // Print the contract
-          adminView.print(" Borrowing member: " + contract.getBorrower().getName());
-          adminView.print(" Start date: " + contract.getStartDate());
-          adminView.print(" End date: " + contract.getEndDate());
-        }
-      } else {
-        adminView.print("No contracts");
-      }
+      adminView.printAllItemInformation(item, i);
     }
   }
 
