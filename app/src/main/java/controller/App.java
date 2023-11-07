@@ -24,7 +24,7 @@ public class App {
       AdminView adminView = new AdminView();
       AdminModel adminModel = new AdminModel();
       AdminController adminController = new AdminController(adminModel);
-      MemberController memberController = new MemberController();
+      MemberController memberController = new MemberController(adminModel);
 
       // Add some members, items, and contracts to start with
       DefaultData defaultData = new DefaultData(adminModel, time);
@@ -70,7 +70,7 @@ public class App {
             memberController.deleteItemPrompt(adminModel.getMembers());
             break;
           case VIEW_ALL_ITEMS:
-            memberController.viewAllItems(adminModel.getMembers());
+            memberController.viewAllItems();
             break;
           case ADD_CONTRACT:
             memberController.addContractPrompt(adminModel.getMembers(), time.getTodaysDate());

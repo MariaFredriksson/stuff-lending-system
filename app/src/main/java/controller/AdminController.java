@@ -1,6 +1,5 @@
 package controller;
 
-import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.util.ArrayList;
 import model.AdminModel;
 import model.Item;
@@ -28,11 +27,6 @@ public class AdminController {
     adminModel = adminModelToSet;
     adminView = new AdminView();
   }
-
-  @SuppressFBWarnings(value = "EI_EXPOSE_REP", justification = "This is a getter method.")
-  // public AdminModel getAdminModel() {
-  //   return adminModel;
-  // }
 
   /**
    * Prompts the user to create a new member and adds the member to the list of members.
@@ -154,7 +148,7 @@ public class AdminController {
     adminView.printNewDate(time.getTodaysDate());
 
     // Get all items that exist in the program
-    ArrayList<Item> items = memberController.getAllItems(adminModel.getMembers());
+    ArrayList<Item> items = adminModel.getAllItemsFromAllMembers();
 
     adminModel.checkForExpiredContracts(time, items);
   }

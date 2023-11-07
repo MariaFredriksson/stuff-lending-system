@@ -1,6 +1,8 @@
 package controller;
 
 import java.util.ArrayList;
+
+import model.AdminModel;
 import model.Item;
 import model.Item.ItemCategory;
 import model.Member;
@@ -15,12 +17,14 @@ import view.AdminView.ItemListAction;
  */
 public class MemberController {
   private AdminView adminView;
+  private AdminModel adminModel;
 
   /**
    * Constructor to initialize the MemberController with an instance of AdminView.
    */
-  public MemberController() {
+  public MemberController(AdminModel adminModelToSet) {
     adminView = new AdminView();
+    adminModel = adminModelToSet;
   }
 
   /**
@@ -128,10 +132,9 @@ public class MemberController {
   /**
    * Prompts the user to view all items and displays all items.
    *
-   * @param members The list of members.
    */
-  public void viewAllItemsName(ArrayList<Member> members) {
-    ArrayList<Item> items = getAllItems(members);
+  public void viewAllItemsName() {
+    ArrayList<Item> items = adminModel.getAllItemsFromAllMembers();
     // Print the list of items
     adminView.printItemList(items);
   }
@@ -139,19 +142,18 @@ public class MemberController {
   /**
    * Prompts the user to view all items and displays all items.
    *
-   * @param members The list of members.
    */
-  public void viewAllItems(ArrayList<Member> members) {
+  public void viewAllItems() {
     adminView.printItemListMenu();
 
     ItemListAction action = adminView.getItemListAction(adminView.readLine());
 
     switch (action) {
       case NAMES:
-        viewAllItemsName(members);
+        viewAllItemsName();
         break;
       case ALL_INFORMATION:
-        viewAllItemInformation(members);
+        viewAllItemInformation();
         break;
       default:
         adminView.printInvalidInput();
@@ -168,10 +170,10 @@ public class MemberController {
     try {
       // Ask the user which item they want to rent
       adminView.printSelectItemToRent();
-      viewAllItemsName(members);
+      viewAllItemsName();
   
       // Get a list of all the items
-      ArrayList<Item> items = getAllItems(members);
+      ArrayList<Item> items = adminModel.getAllItemsFromAllMembers();
   
       int itemIndex = Integer.parseInt(adminView.readLine()) - 1;
   
@@ -214,11 +216,10 @@ public class MemberController {
    * Prompts the user to view all items of a specific category and displays all items of that
    * category.
    *
-   * @param members The list of members.
    */
-  public void viewAllItemInformation(ArrayList<Member> members) {
+  public void viewAllItemInformation() {
     // Get all the items from all the members
-    ArrayList<Item> items = getAllItems(members);
+    ArrayList<Item> items = adminModel.getAllItemsFromAllMembers();
 
     // Loop through all the items and print all the information about the items
     for (int i = 0; i < items.size(); i++) {
@@ -227,34 +228,5 @@ public class MemberController {
 
       adminView.printAllItemInformation(item, i);
     }
-  }
-
-  /**
-   * Prompts the user to view all items.
-   *
-   * @param members The list of members.
-   */
-  public ArrayList<Item> getAllItems(ArrayList<Member> members) {
-    ArrayList<Item> items = new ArrayList<Item>();
-
-    // Loop through all the members
-    for (int i = 0; i < members.size(); i++) {
-      // Get the member from the list of members
-      Member member = members.get(i);
-
-      // Get the list of items from the member
-      // This is already a copy of the list of items from the member model, so it is immutable
-      ArrayList<Item> memberItems = member.getOwnedItems();
-
-      // Loop through all the items
-      for (int j = 0; j < memberItems.size(); j++) {
-        // Get the item from the list of items
-        Item item = memberItems.get(j);
-
-        // Add the item to the list of items
-        items.add(item);
-      }
-    }
-    return items;
   }
 }

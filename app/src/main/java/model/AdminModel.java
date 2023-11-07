@@ -78,6 +78,33 @@ public class AdminModel {
     members.remove(member);
   }
 
+  public ArrayList<Item> getAllItemsFromAllMembers() {
+    ArrayList<Item> items = new ArrayList<Item>();
+
+    // Get a copy of the list of members
+    ArrayList<Member> members = getMembers();
+
+    // Loop through all the members
+    for (int i = 0; i < members.size(); i++) {
+      // Get the member from the list of members
+      Member member = members.get(i);
+
+      // Get the list of items from the member
+      // This is already a copy of the list of items from the member model, so it is immutable
+      ArrayList<Item> memberItems = member.getOwnedItems();
+
+      // Loop through all the items
+      for (int j = 0; j < memberItems.size(); j++) {
+        // Get the item from the list of items
+        Item item = memberItems.get(j);
+
+        // Add the item to the list of items
+        items.add(item);
+      }
+    }
+    return items;
+  }
+
   public void checkForExpiredContracts(Time time, ArrayList<Item> items) {
     // Loop through all the items
     items.forEach(item -> {
