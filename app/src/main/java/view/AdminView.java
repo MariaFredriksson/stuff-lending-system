@@ -303,6 +303,39 @@ public class AdminView {
     }
   }
 
+  public void printItemListMenu() {
+    print("How do you want to view the items?");
+    print("1. Only names");
+    print("2. All information");
+  }
+
+  public enum ItemListAction {
+    NONE,
+    NAMES,
+    ALL_INFORMATION
+  }
+
+  /**
+   * Returns the item list action based on the user input.
+   *
+   * @param input The user input.
+   *
+   * @return The item list action.
+   */
+  public ItemListAction getItemListAction(String input) {
+    if (input.length() != 1) {
+      return ItemListAction.NONE;
+    }
+    switch (input) {
+      case "1":
+        return ItemListAction.NAMES;
+      case "2":
+        return ItemListAction.ALL_INFORMATION;
+      default:
+        return ItemListAction.NONE;
+    }
+  }
+
   private void printItemInfo(Item item) {
     // Print the name, category, description, cost of the item
     print("   Item: " + item.getName());

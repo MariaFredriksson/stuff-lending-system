@@ -6,6 +6,7 @@ import model.Item;
 import model.Item.ItemCategory;
 import model.Member;
 import view.AdminView;
+import view.AdminView.ItemListAction;
 
 
 /**
@@ -142,18 +143,20 @@ public class MemberController {
    * @param members The list of members.
    */
   public void viewAllItems(ArrayList<Member> members) {
-    // Ask user which way to view the items?
-    int viewOption 
-        = Integer.parseInt(
-        adminView.prompt("How do you want to view the items? \n 1. Only names \n 2. All information."));
-    
-    if (viewOption == 1) {
-      viewAllItemsName(members);
-    } else if (viewOption == 2) {
-      viewAllItemInformation(members);
-    } else {
-      adminView.print("Invalid input");
-    } 
+    adminView.printItemListMenu();
+
+    ItemListAction action = adminView.getItemListAction(adminView.readLine());
+
+    switch (action) {
+      case NAMES:
+        viewAllItemsName(members);
+        break;
+      case ALL_INFORMATION:
+        viewAllItemInformation(members);
+        break;
+      default:
+        adminView.print("Invalid input");
+    }
   }
 
   /**
