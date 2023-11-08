@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import model.Contract;
 import model.Item;
-import model.Member;
 import model.Item.ItemCategory;
+import model.Member;
 
 /**
  * The AdminView class is responsible for displaying the admin menu and getting input from the user.
@@ -186,6 +186,11 @@ public class AdminView {
     return memberIndex;
   }
 
+  /**
+   * Prints the list of categories.
+   *
+   * @param categories The list of categories.
+   */
   public void displayCategoryOptions(ItemCategory[] categories) {
     print("Category options:");
     for (int i = 0; i < categories.length; i++) {
@@ -228,12 +233,20 @@ public class AdminView {
     }
   }
 
+  /**
+   * Prompts the user to view all members.
+   *
+   */
   public void printMemberListMenu() {
     print("View members in:");
     print("1. A simple way");
     print("2. A verbose way");
   }
 
+  /**
+   * Prompts the user to view all members.
+   *
+   */
   public enum MemberListAction {
     NONE,
     SIMPLE,
@@ -303,12 +316,20 @@ public class AdminView {
     }
   }
 
+  /**
+   * Prompts the user to view all items.
+   *
+   */
   public void printItemListMenu() {
     print("How do you want to view the items?");
     print("1. Only names");
     print("2. All information");
   }
 
+  /**
+   * Prompts the user to view all items.
+   *
+   */
   public enum ItemListAction {
     NONE,
     NAMES,
@@ -336,6 +357,11 @@ public class AdminView {
     }
   }
 
+  /**
+   * Prompts the user to view all items in a simple way.
+   *
+   * @param itemList The list of items.
+   */
   private void printItemInfo(Item item) {
     // Print the name, category, description, cost of the item
     print("   Item: " + item.getName());
@@ -364,7 +390,13 @@ public class AdminView {
     }
   }
 
-  public void printAllItemInformation (Item item, int i) {
+  /**
+   * Prompts the user to view all items in a simple way.
+   *
+   * @param item The list of items.
+   * @param i The index.
+   */
+  public void printAllItemInformation(Item item, int i) {
     // Print the name, category, description, cost per day, owner, and contracts
     print(i + 1 + ". Name: " + item.getName());
     print("Category: " + item.getCategory());
@@ -478,31 +510,59 @@ public class AdminView {
     }
   }
 
+  /**
+   * Prints "Select the item you want to rent:".
+   *
+   */
   public void printSelectItemToRent() {
     print("Select the item you want to rent:");
   }
 
+  /**
+   * Prints "who are you?".
+   *
+   */
   public void printWhoAreYou() {
     print("Who are you?");
   }
 
+  /**
+   * Prints "How many days do you want to rent the item for?".
+   *
+   * @return The index of the member to add the contract to.
+   */
   public int promptForDaysToRent() {
     return Integer.parseInt(prompt("How many days do you want to rent the item for?"));
   }
 
+  /**
+   * Prints "Contract added successfully!".
+   *
+   */
   public void printContractAddedSuccessfully() {
     print("Contract added successfully!");
   }
 
+  /**
+   * Prints "Item is not available".
+   *
+   */
   public void printItemNotAvailable() {
     print("Item is not available");
   }
 
+  /**
+   * Prins adminMenu.
+   *
+   */
   public void printAdminMenu() {
     print("What do you want to do?");
     print("1. Increase day count with one");
   }
 
+  /**
+   * The AdminMenuAction enum represents the actions that can be performed in the admin menu.
+   */
   public enum AdminMenuAction {
     NONE,
     INCREASE_DAY_COUNT
@@ -527,10 +587,19 @@ public class AdminView {
     }
   }
 
+  /**
+   * Prompts the user to view all items.
+   *
+   * @param date The list of items.
+   */
   public void printNewDate(int date) {
     print("The new date is: " + date);
   }
 
+  /**
+   * Prompts the user to view all items.
+   *
+   */
   public void displayGoodbyeMessage() {
     print("Goodbye!");
   }

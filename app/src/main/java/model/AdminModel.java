@@ -78,6 +78,11 @@ public class AdminModel {
     members.remove(member);
   }
 
+  /**
+   * Returns a list of all the items from all the members.
+   *
+   * @return A list of all the items from all the members.
+   */
   public ArrayList<Item> getAllItemsFromAllMembers() {
     ArrayList<Item> items = new ArrayList<Item>();
 
@@ -105,6 +110,11 @@ public class AdminModel {
     return items;
   }
 
+  /**
+   * Returns a list of all the contracts from all the members.
+   *
+   * @return A list of all the contracts from all the members.
+   */
   public void checkForExpiredContracts(Time time, ArrayList<Item> items) {
     // Loop through all the items
     items.forEach(item -> {

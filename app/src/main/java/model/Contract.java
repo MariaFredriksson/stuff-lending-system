@@ -23,6 +23,9 @@ public class Contract {
    * @param endDate The date when the contract ends.
    * @param rentingCost The cost of renting the item.
    */
+
+  @SuppressFBWarnings(value = 
+      "EI_EXPOSE_REP", justification = "If we want to know the item and the members the contract is connected to.")
   public Contract(Item item, Member lender, Member borrower, int startDate, int endDate, int rentingCost) {
     this.item = item;
     this.lender = lender;
@@ -38,7 +41,7 @@ public class Contract {
    *
    * @return The item that is being borrowed.
    */
-
+  
   @SuppressFBWarnings(value = "EI_EXPOSE_REP", justification = "This is a getter method.")
   public Item getItem() {
     return this.item;
