@@ -3,9 +3,6 @@ package model;
 import java.util.ArrayList;
 import java.util.Random;
 
-/**
- * The AdminModel class is responsible for creating new members with a unique member ID.
- */
 public class AdminModel {
   
   private ArrayList<Member> members;

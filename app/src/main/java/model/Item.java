@@ -2,6 +2,7 @@ package model;
 
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * The Item class represents an item.
@@ -135,7 +136,11 @@ public class Item {
    * @param category The category of the item.
    */
   public void setCategory(ItemCategory category) {
-    this.category = category;
+  if (Arrays.stream(ItemCategory.values()).anyMatch(c -> c == category)) {
+      this.category = category;
+  } else {
+      throw new IllegalArgumentException("Invalid category: " + category);
+    }
   }
 
   /**

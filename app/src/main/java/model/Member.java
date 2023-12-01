@@ -1,6 +1,8 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+
 import model.Item.ItemCategory;
 
 /**
@@ -153,11 +155,19 @@ public class Member {
     this.credits += credits;
   }
 
+  private boolean isValidCategory(ItemCategory category) {
+  return Arrays.asList(ItemCategory.values()).contains(category);
+  }
+
   /**
    * Adds an item.
    */
   public void addItem(ItemCategory category, String name, String description, int costPerDay, int todaysDate) {
     // Create a new item object
+    if (!isValidCategory(category)) {
+      throw new IllegalArgumentException("Invalid category");
+    }
+
     Item newItem = new Item(category, name, description, costPerDay, this, todaysDate);
 
     // Add the item to the list of items

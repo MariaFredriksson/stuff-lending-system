@@ -33,34 +33,37 @@ public class MemberController {
    * @param todaysDate The current date for item creation.
    */
   public void addItemPrompt(ArrayList<Member> members, int todaysDate) {
-    // ^^ Can we use the admin view here? Or should we create a new member view?
+    try {
+      // Ask for which member to add the item to
+      int memberIndex = adminView.addItemPrompt(members);
 
-    // Ask for which member to add the item to
-    int memberIndex = adminView.addItemPrompt(members);
+      // Get the member from the list of members
+      Member member = members.get(memberIndex - 1);
 
-    // Get the member from the list of members
-    Member member = members.get(memberIndex - 1);
+      // Get category options from enum
+      ItemCategory[] categories = ItemCategory.values();
 
-    // Get category options from enum
-    ItemCategory[] categories = ItemCategory.values();
+      // Display category options
+      adminView.displayCategoryOptions(categories);
 
-    // Display category options
-    adminView.displayCategoryOptions(categories);
+      // Ask for the category of the item, name, description, and cost per day
+      String categoryString = adminView.promptForCategory();
+      String name = adminView.promptForName();
+      String description = adminView.promptForDescription();
+      int costPerDay = adminView.promptForCostPerDay();
 
-    // Ask for the category of the item, name, description, and cost per day
-    String categoryString = adminView.promptForCategory();
-    String name = adminView.promptForName();
-    String description = adminView.promptForDescription();
-    int costPerDay = adminView.promptForCostPerDay();
+      // Convert the category string to an enum
+      ItemCategory category = ItemCategory.valueOf(categoryString);
 
-    // Convert the category string to an enum
-    ItemCategory category = ItemCategory.valueOf(categoryString);
+      // Add the item to the member
+      member.addItem(category, name, description, costPerDay, todaysDate);
 
-    // Add the item to the member
-    member.addItem(category, name, description, costPerDay, todaysDate);
+      // Print a success message
+      adminView.displayItemAddedSuccessfully();
 
-    // Print a success message
-    adminView.displayItemAddedSuccessfully();
+    } catch (Exception e) {
+      adminView.printInvalidInput();
+    }
   }
 
   /**
