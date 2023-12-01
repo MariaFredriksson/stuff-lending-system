@@ -136,10 +136,10 @@ public class Item {
    * @param category The category of the item.
    */
   public void setCategory(ItemCategory category) {
-  if (Arrays.stream(ItemCategory.values()).anyMatch(c -> c == category)) {
+    if (Arrays.stream(ItemCategory.values()).anyMatch(c -> c == category)) {
       this.category = category;
-  } else {
-      throw new IllegalArgumentException("Invalid category: " + category);
+    } else {
+        throw new IllegalArgumentException("Invalid category: " + category);
     }
   }
 

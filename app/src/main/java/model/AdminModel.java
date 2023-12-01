@@ -3,6 +3,9 @@ package model;
 import java.util.ArrayList;
 import java.util.Random;
 
+/**
+ * The AdminModel class.
+ */
 public class AdminModel {
   
   private ArrayList<Member> members;
@@ -41,7 +44,7 @@ public class AdminModel {
     validateMobileNumber(mobileNumber);
 
     // Generate a random member ID
-    String memberId = generateMemberId(10);
+    String memberId = generateMemberId(6);
 
     Member member = new Member(name, email, mobileNumber, memberId, creationDate);
     addMemberToList(member);
@@ -109,8 +112,6 @@ public class AdminModel {
 
   /**
    * Returns a list of all the contracts from all the members.
-   *
-   * @return A list of all the contracts from all the members.
    */
   public void checkForExpiredContracts(Time time, ArrayList<Item> items) {
     // Loop through all the items

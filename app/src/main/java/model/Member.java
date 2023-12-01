@@ -2,7 +2,6 @@ package model;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-
 import model.Item.ItemCategory;
 
 /**
@@ -156,7 +155,7 @@ public class Member {
   }
 
   private boolean isValidCategory(ItemCategory category) {
-  return Arrays.asList(ItemCategory.values()).contains(category);
+    return Arrays.asList(ItemCategory.values()).contains(category);
   }
 
   /**
